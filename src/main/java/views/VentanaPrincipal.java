@@ -4,6 +4,9 @@
  */
 package views;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author khalid
@@ -15,6 +18,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        this.setTitle("DawFood Khalid Menu");
+        setSizeAndCenter(600, 250);
+    }
+    
+    private void setSizeAndCenter(int width, int height) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - width) / 2;
+        int y = (screenSize.height - height) / 2;
+        setSize(width, height);
+        setLocation(x, y);
     }
 
     /**
@@ -26,6 +39,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jPopupMenu3 = new javax.swing.JPopupMenu();
         ProductosBtn = new javax.swing.JButton();
         ComprarBtn = new javax.swing.JButton();
         TicketsBtn = new javax.swing.JButton();
@@ -48,23 +64,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(197, 197, 197)
+                .addGap(46, 46, 46)
                 .addComponent(ProductosBtn)
-                .addGap(134, 134, 134)
+                .addGap(68, 68, 68)
                 .addComponent(ComprarBtn)
-                .addGap(128, 128, 128)
+                .addGap(83, 83, 83)
                 .addComponent(TicketsBtn)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(179, 179, 179)
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ProductosBtn)
                     .addComponent(ComprarBtn)
                     .addComponent(TicketsBtn))
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,5 +130,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ComprarBtn;
     private javax.swing.JButton ProductosBtn;
     private javax.swing.JButton TicketsBtn;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
+    private javax.swing.JPopupMenu jPopupMenu3;
     // End of variables declaration//GEN-END:variables
 }
