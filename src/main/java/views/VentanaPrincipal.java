@@ -45,6 +45,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ProductosBtn = new javax.swing.JButton();
         ComprarBtn = new javax.swing.JButton();
         TicketsBtn = new javax.swing.JButton();
+        CerrarPrincipal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +60,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         TicketsBtn.setText("Ver Tickets");
 
+        CerrarPrincipal.setText("Cerrar");
+        CerrarPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CerrarPrincipalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,6 +79,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(83, 83, 83)
                 .addComponent(TicketsBtn)
                 .addContainerGap(66, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CerrarPrincipal)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +92,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(ProductosBtn)
                     .addComponent(ComprarBtn)
                     .addComponent(TicketsBtn))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(CerrarPrincipal)
+                .addContainerGap())
         );
 
         pack();
@@ -89,6 +103,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void ComprarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComprarBtnActionPerformed
+
+    private void CerrarPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarPrincipalActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_CerrarPrincipalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,6 +146,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CerrarPrincipal;
     private javax.swing.JButton ComprarBtn;
     private javax.swing.JButton ProductosBtn;
     private javax.swing.JButton TicketsBtn;

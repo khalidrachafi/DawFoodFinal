@@ -27,17 +27,57 @@ public class ComprarMenu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        ComitaBtn = new javax.swing.JButton();
+        BebidaBtn = new javax.swing.JButton();
+        PostreBtn = new javax.swing.JButton();
+        VolverBtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Elige la opción a la que deseas acceder:");
+
+        ComitaBtn.setText("Comida");
+
+        BebidaBtn.setText("Bebida");
+
+        PostreBtn.setText("Postre");
+
+        VolverBtn.setText("Volver atrás");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ComitaBtn)
+                        .addGap(65, 65, 65)
+                        .addComponent(BebidaBtn)
+                        .addGap(65, 65, 65)
+                        .addComponent(PostreBtn)))
+                .addContainerGap(54, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(VolverBtn)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jLabel1)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ComitaBtn)
+                    .addComponent(BebidaBtn)
+                    .addComponent(PostreBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(VolverBtn)
+                .addContainerGap())
         );
 
         pack();
@@ -86,5 +126,10 @@ public class ComprarMenu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BebidaBtn;
+    private javax.swing.JButton ComitaBtn;
+    private javax.swing.JButton PostreBtn;
+    private javax.swing.JButton VolverBtn;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

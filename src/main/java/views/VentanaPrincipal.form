@@ -52,6 +52,11 @@
               <Component id="TicketsBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="66" max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="CerrarPrincipal" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -63,7 +68,9 @@
                   <Component id="ComprarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="TicketsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="110" max="32767" attributes="0"/>
+              <EmptySpace pref="80" max="32767" attributes="0"/>
+              <Component id="CerrarPrincipal" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -86,6 +93,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ver Tickets"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="CerrarPrincipal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cerrar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CerrarPrincipalActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
