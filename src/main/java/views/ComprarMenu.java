@@ -13,9 +13,17 @@ public class ComprarMenu extends javax.swing.JDialog {
     /**
      * Creates new form ComprarMenu
      */
-    public ComprarMenu(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+//    public ComprarMenu(java.awt.Frame parent, boolean modal) {
+//        super(parent, modal);
+//        initComponents();
+//    }
+    private VentanaPrincipal padre;
+     
+    public ComprarMenu(VentanaPrincipal ventana, boolean modal) {
+        super(ventana, modal);
+        padre = ventana;
         initComponents();
+        this.setTitle("Menu de compra de productos");
     }
 
     /**
@@ -32,21 +40,44 @@ public class ComprarMenu extends javax.swing.JDialog {
         BebidaBtn = new javax.swing.JButton();
         PostreBtn = new javax.swing.JButton();
         VolverBtn = new javax.swing.JButton();
+        CarritoBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Elige la opción a la que deseas acceder:");
 
         ComitaBtn.setText("Comida");
+        ComitaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComitaBtnActionPerformed(evt);
+            }
+        });
 
         BebidaBtn.setText("Bebida");
+        BebidaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BebidaBtnActionPerformed(evt);
+            }
+        });
 
         PostreBtn.setText("Postre");
+        PostreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PostreBtnActionPerformed(evt);
+            }
+        });
 
         VolverBtn.setText("Volver atrás");
         VolverBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VolverBtnActionPerformed(evt);
+            }
+        });
+
+        CarritoBtn.setText("Carrito");
+        CarritoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CarritoBtnActionPerformed(evt);
             }
         });
 
@@ -59,9 +90,12 @@ public class ComprarMenu extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ComitaBtn)
-                        .addGap(65, 65, 65)
-                        .addComponent(BebidaBtn)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CarritoBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ComitaBtn)
+                                .addGap(65, 65, 65)
+                                .addComponent(BebidaBtn)))
                         .addGap(65, 65, 65)
                         .addComponent(PostreBtn)))
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -80,7 +114,9 @@ public class ComprarMenu extends javax.swing.JDialog {
                     .addComponent(ComitaBtn)
                     .addComponent(BebidaBtn)
                     .addComponent(PostreBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(CarritoBtn)
+                .addGap(20, 20, 20)
                 .addComponent(VolverBtn)
                 .addContainerGap())
         );
@@ -93,50 +129,71 @@ public class ComprarMenu extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_VolverBtnActionPerformed
 
+    private void ComitaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComitaBtnActionPerformed
+        // TODO add your handling code here:
+        new Comida(this, true).setVisible(true);
+    }//GEN-LAST:event_ComitaBtnActionPerformed
+
+    private void BebidaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BebidaBtnActionPerformed
+        // TODO add your handling code here:
+        new Bebida(this, true).setVisible(true);
+    }//GEN-LAST:event_BebidaBtnActionPerformed
+
+    private void PostreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostreBtnActionPerformed
+        // TODO add your handling code here:
+        new Postre(this, true).setVisible(true);
+    }//GEN-LAST:event_PostreBtnActionPerformed
+
+    private void CarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoBtnActionPerformed
+        // TODO add your handling code here:
+        new Carrito(this, true).setVisible(true);
+    }//GEN-LAST:event_CarritoBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ComprarMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ComprarMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ComprarMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ComprarMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ComprarMenu dialog = new ComprarMenu(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ComprarMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ComprarMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ComprarMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ComprarMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the dialog */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                ComprarMenu dialog = new ComprarMenu(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BebidaBtn;
+    private javax.swing.JButton CarritoBtn;
     private javax.swing.JButton ComitaBtn;
     private javax.swing.JButton PostreBtn;
     private javax.swing.JButton VolverBtn;

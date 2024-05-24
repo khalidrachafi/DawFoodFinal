@@ -23,48 +23,48 @@ import javax.persistence.Table;
  * @author khalid
  */
 @Entity
-@Table(name = "TipoProducto")
+@Table(name = "tipoproducto")
 @NamedQueries({
-    @NamedQuery(name = "TipoProducto.findAll", query = "SELECT t FROM TipoProducto t"),
-    @NamedQuery(name = "TipoProducto.findByNombreTipoProdcucto", query = "SELECT t FROM TipoProducto t WHERE t.nombreTipoProdcucto = :nombreTipoProdcucto"),
-    @NamedQuery(name = "TipoProducto.findByCodTipoProducto", query = "SELECT t FROM TipoProducto t WHERE t.codTipoProducto = :codTipoProducto"),
-    @NamedQuery(name = "TipoProducto.findByCategoria", query = "SELECT t FROM TipoProducto t WHERE t.categoria = :categoria")})
-public class TipoProducto implements Serializable {
+    @NamedQuery(name = "Tipoproducto.findAll", query = "SELECT t FROM Tipoproducto t"),
+    @NamedQuery(name = "Tipoproducto.findByNombretipoprodcucto", query = "SELECT t FROM Tipoproducto t WHERE t.nombretipoprodcucto = :nombretipoprodcucto"),
+    @NamedQuery(name = "Tipoproducto.findByCodtipoproducto", query = "SELECT t FROM Tipoproducto t WHERE t.codtipoproducto = :codtipoproducto"),
+    @NamedQuery(name = "Tipoproducto.findByCategoria", query = "SELECT t FROM Tipoproducto t WHERE t.categoria = :categoria")})
+public class Tipoproducto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Column(name = "nombreTipoProdcucto")
-    private String nombreTipoProdcucto;
+    @Column(name = "nombretipoprodcucto")
+    private String nombretipoprodcucto;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "codTipoProducto")
-    private Integer codTipoProducto;
+    @Column(name = "codtipoproducto")
+    private Integer codtipoproducto;
     @Column(name = "categoria")
     private String categoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codTipoProducto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codtipoproducto")
     private Collection<Productos> productosCollection;
 
-    public TipoProducto() {
+    public Tipoproducto() {
     }
 
-    public TipoProducto(Integer codTipoProducto) {
-        this.codTipoProducto = codTipoProducto;
+    public Tipoproducto(Integer codtipoproducto) {
+        this.codtipoproducto = codtipoproducto;
     }
 
-    public String getNombreTipoProdcucto() {
-        return nombreTipoProdcucto;
+    public String getNombretipoprodcucto() {
+        return nombretipoprodcucto;
     }
 
-    public void setNombreTipoProdcucto(String nombreTipoProdcucto) {
-        this.nombreTipoProdcucto = nombreTipoProdcucto;
+    public void setNombretipoprodcucto(String nombretipoprodcucto) {
+        this.nombretipoprodcucto = nombretipoprodcucto;
     }
 
-    public Integer getCodTipoProducto() {
-        return codTipoProducto;
+    public Integer getCodtipoproducto() {
+        return codtipoproducto;
     }
 
-    public void setCodTipoProducto(Integer codTipoProducto) {
-        this.codTipoProducto = codTipoProducto;
+    public void setCodtipoproducto(Integer codtipoproducto) {
+        this.codtipoproducto = codtipoproducto;
     }
 
     public String getCategoria() {
@@ -86,18 +86,18 @@ public class TipoProducto implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codTipoProducto != null ? codTipoProducto.hashCode() : 0);
+        hash += (codtipoproducto != null ? codtipoproducto.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoProducto)) {
+        if (!(object instanceof Tipoproducto)) {
             return false;
         }
-        TipoProducto other = (TipoProducto) object;
-        if ((this.codTipoProducto == null && other.codTipoProducto != null) || (this.codTipoProducto != null && !this.codTipoProducto.equals(other.codTipoProducto))) {
+        Tipoproducto other = (Tipoproducto) object;
+        if ((this.codtipoproducto == null && other.codtipoproducto != null) || (this.codtipoproducto != null && !this.codtipoproducto.equals(other.codtipoproducto))) {
             return false;
         }
         return true;
@@ -105,7 +105,7 @@ public class TipoProducto implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.TipoProducto[ codTipoProducto=" + codTipoProducto + " ]";
+        return "models.Tipoproducto[ codtipoproducto=" + codtipoproducto + " ]";
     }
     
 }

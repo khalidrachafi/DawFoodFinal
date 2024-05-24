@@ -26,23 +26,23 @@ import javax.persistence.Table;
  * @author khalid
  */
 @Entity
-@Table(name = "Productos")
+@Table(name = "productos")
 @NamedQueries({
     @NamedQuery(name = "Productos.findAll", query = "SELECT p FROM Productos p"),
-    @NamedQuery(name = "Productos.findByIdProductos", query = "SELECT p FROM Productos p WHERE p.idProductos = :idProductos"),
+    @NamedQuery(name = "Productos.findByIdproductos", query = "SELECT p FROM Productos p WHERE p.idproductos = :idproductos"),
     @NamedQuery(name = "Productos.findByIva", query = "SELECT p FROM Productos p WHERE p.iva = :iva"),
     @NamedQuery(name = "Productos.findByStock", query = "SELECT p FROM Productos p WHERE p.stock = :stock"),
     @NamedQuery(name = "Productos.findByDescripcion", query = "SELECT p FROM Productos p WHERE p.descripcion = :descripcion"),
     @NamedQuery(name = "Productos.findByPrecio", query = "SELECT p FROM Productos p WHERE p.precio = :precio"),
-    @NamedQuery(name = "Productos.findByNomProducto", query = "SELECT p FROM Productos p WHERE p.nomProducto = :nomProducto")})
+    @NamedQuery(name = "Productos.findByNomproducto", query = "SELECT p FROM Productos p WHERE p.nomproducto = :nomproducto")})
 public class Productos implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idProductos")
-    private Integer idProductos;
+    @Column(name = "idproductos")
+    private Integer idproductos;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "iva")
     private Double iva;
@@ -52,27 +52,27 @@ public class Productos implements Serializable {
     private String descripcion;
     @Column(name = "precio")
     private BigDecimal precio;
-    @Column(name = "nomProducto")
-    private String nomProducto;
-    @JoinColumn(name = "codTipoProducto", referencedColumnName = "codTipoProducto")
-    @ManyToOne(optional = false)
-    private TipoProducto codTipoProducto;
+    @Column(name = "nomproducto")
+    private String nomproducto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
-    private Collection<DetalleTicket> detalleTicketCollection;
+    private Collection<Detalleticket> detalleticketCollection;
+    @JoinColumn(name = "codtipoproducto", referencedColumnName = "codtipoproducto")
+    @ManyToOne(optional = false)
+    private Tipoproducto codtipoproducto;
 
     public Productos() {
     }
 
-    public Productos(Integer idProductos) {
-        this.idProductos = idProductos;
+    public Productos(Integer idproductos) {
+        this.idproductos = idproductos;
     }
 
-    public Integer getIdProductos() {
-        return idProductos;
+    public Integer getIdproductos() {
+        return idproductos;
     }
 
-    public void setIdProductos(Integer idProductos) {
-        this.idProductos = idProductos;
+    public void setIdproductos(Integer idproductos) {
+        this.idproductos = idproductos;
     }
 
     public Double getIva() {
@@ -107,34 +107,34 @@ public class Productos implements Serializable {
         this.precio = precio;
     }
 
-    public String getNomProducto() {
-        return nomProducto;
+    public String getNomproducto() {
+        return nomproducto;
     }
 
-    public void setNomProducto(String nomProducto) {
-        this.nomProducto = nomProducto;
+    public void setNomproducto(String nomproducto) {
+        this.nomproducto = nomproducto;
     }
 
-    public TipoProducto getCodTipoProducto() {
-        return codTipoProducto;
+    public Collection<Detalleticket> getDetalleticketCollection() {
+        return detalleticketCollection;
     }
 
-    public void setCodTipoProducto(TipoProducto codTipoProducto) {
-        this.codTipoProducto = codTipoProducto;
+    public void setDetalleticketCollection(Collection<Detalleticket> detalleticketCollection) {
+        this.detalleticketCollection = detalleticketCollection;
     }
 
-    public Collection<DetalleTicket> getDetalleTicketCollection() {
-        return detalleTicketCollection;
+    public Tipoproducto getCodtipoproducto() {
+        return codtipoproducto;
     }
 
-    public void setDetalleTicketCollection(Collection<DetalleTicket> detalleTicketCollection) {
-        this.detalleTicketCollection = detalleTicketCollection;
+    public void setCodtipoproducto(Tipoproducto codtipoproducto) {
+        this.codtipoproducto = codtipoproducto;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idProductos != null ? idProductos.hashCode() : 0);
+        hash += (idproductos != null ? idproductos.hashCode() : 0);
         return hash;
     }
 
@@ -145,7 +145,7 @@ public class Productos implements Serializable {
             return false;
         }
         Productos other = (Productos) object;
-        if ((this.idProductos == null && other.idProductos != null) || (this.idProductos != null && !this.idProductos.equals(other.idProductos))) {
+        if ((this.idproductos == null && other.idproductos != null) || (this.idproductos != null && !this.idproductos.equals(other.idproductos))) {
             return false;
         }
         return true;
@@ -153,7 +153,7 @@ public class Productos implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Productos[ idProductos=" + idProductos + " ]";
+        return "models.Productos[ idproductos=" + idproductos + " ]";
     }
     
 }

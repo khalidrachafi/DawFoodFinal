@@ -50,6 +50,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ProductosBtn.setText("Gestionar Productos");
+        ProductosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductosBtnActionPerformed(evt);
+            }
+        });
 
         ComprarBtn.setText("Comprar");
         ComprarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +64,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         TicketsBtn.setText("Ver Tickets");
+        TicketsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TicketsBtnActionPerformed(evt);
+            }
+        });
 
         CerrarPrincipal.setText("Cerrar");
         CerrarPrincipal.addActionListener(new java.awt.event.ActionListener() {
@@ -102,12 +112,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void ComprarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarBtnActionPerformed
         // TODO add your handling code here:
+        new ComprarMenu(this, true).setVisible(true);
     }//GEN-LAST:event_ComprarBtnActionPerformed
 
     private void CerrarPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarPrincipalActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_CerrarPrincipalActionPerformed
+
+    private void TicketsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TicketsBtnActionPerformed
+        // TODO add your handling code here:
+        new TicketsMenu(this, true).setVisible(true);
+    }//GEN-LAST:event_TicketsBtnActionPerformed
+
+    private void ProductosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosBtnActionPerformed
+        // TODO add your handling code here:
+        new GestionarMenu(this, true).setVisible(true);
+    }//GEN-LAST:event_ProductosBtnActionPerformed
 
     /**
      * @param args the command line arguments

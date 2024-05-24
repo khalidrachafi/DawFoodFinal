@@ -13,9 +13,9 @@ public class Borrar extends javax.swing.JDialog {
     /**
      * Creates new form Borrar
      */
-    private VentanaPrincipal padre;
+    private GestionarMenu padre;
      
-    public Borrar(VentanaPrincipal ventana, boolean modal) {
+    public Borrar(GestionarMenu ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
         initComponents();

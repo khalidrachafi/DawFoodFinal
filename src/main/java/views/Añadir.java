@@ -13,9 +13,9 @@ public class Añadir extends javax.swing.JDialog {
     /**
      * Creates new form Añadir
      */
-    private VentanaPrincipal padre;
+    private GestionarMenu padre;
      
-    public Añadir(VentanaPrincipal ventana, boolean modal) {
+    public Añadir(GestionarMenu ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
         initComponents();

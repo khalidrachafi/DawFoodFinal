@@ -26,52 +26,52 @@ import javax.persistence.TemporalType;
  * @author khalid
  */
 @Entity
-@Table(name = "Tpv")
+@Table(name = "tpv")
 @NamedQueries({
     @NamedQuery(name = "Tpv.findAll", query = "SELECT t FROM Tpv t"),
-    @NamedQuery(name = "Tpv.findByCodTpv", query = "SELECT t FROM Tpv t WHERE t.codTpv = :codTpv"),
-    @NamedQuery(name = "Tpv.findByPasswordAdmin", query = "SELECT t FROM Tpv t WHERE t.passwordAdmin = :passwordAdmin"),
+    @NamedQuery(name = "Tpv.findByCodtpv", query = "SELECT t FROM Tpv t WHERE t.codtpv = :codtpv"),
+    @NamedQuery(name = "Tpv.findByPasswordadmin", query = "SELECT t FROM Tpv t WHERE t.passwordadmin = :passwordadmin"),
     @NamedQuery(name = "Tpv.findByUbicacion", query = "SELECT t FROM Tpv t WHERE t.ubicacion = :ubicacion"),
-    @NamedQuery(name = "Tpv.findByFechaHoraActual", query = "SELECT t FROM Tpv t WHERE t.fechaHoraActual = :fechaHoraActual")})
+    @NamedQuery(name = "Tpv.findByFechahoraactual", query = "SELECT t FROM Tpv t WHERE t.fechahoraactual = :fechahoraactual")})
 public class Tpv implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "codTpv")
-    private Integer codTpv;
-    @Column(name = "passwordAdmin")
-    private String passwordAdmin;
+    @Column(name = "codtpv")
+    private Integer codtpv;
+    @Column(name = "passwordadmin")
+    private String passwordadmin;
     @Column(name = "ubicacion")
     private String ubicacion;
-    @Column(name = "fechaHoraActual")
+    @Column(name = "fechahoraactual")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaHoraActual;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codTpv")
+    private Date fechahoraactual;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codtpv")
     private Collection<Tickets> ticketsCollection;
 
     public Tpv() {
     }
 
-    public Tpv(Integer codTpv) {
-        this.codTpv = codTpv;
+    public Tpv(Integer codtpv) {
+        this.codtpv = codtpv;
     }
 
-    public Integer getCodTpv() {
-        return codTpv;
+    public Integer getCodtpv() {
+        return codtpv;
     }
 
-    public void setCodTpv(Integer codTpv) {
-        this.codTpv = codTpv;
+    public void setCodtpv(Integer codtpv) {
+        this.codtpv = codtpv;
     }
 
-    public String getPasswordAdmin() {
-        return passwordAdmin;
+    public String getPasswordadmin() {
+        return passwordadmin;
     }
 
-    public void setPasswordAdmin(String passwordAdmin) {
-        this.passwordAdmin = passwordAdmin;
+    public void setPasswordadmin(String passwordadmin) {
+        this.passwordadmin = passwordadmin;
     }
 
     public String getUbicacion() {
@@ -82,12 +82,12 @@ public class Tpv implements Serializable {
         this.ubicacion = ubicacion;
     }
 
-    public Date getFechaHoraActual() {
-        return fechaHoraActual;
+    public Date getFechahoraactual() {
+        return fechahoraactual;
     }
 
-    public void setFechaHoraActual(Date fechaHoraActual) {
-        this.fechaHoraActual = fechaHoraActual;
+    public void setFechahoraactual(Date fechahoraactual) {
+        this.fechahoraactual = fechahoraactual;
     }
 
     public Collection<Tickets> getTicketsCollection() {
@@ -101,7 +101,7 @@ public class Tpv implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (codTpv != null ? codTpv.hashCode() : 0);
+        hash += (codtpv != null ? codtpv.hashCode() : 0);
         return hash;
     }
 
@@ -112,7 +112,7 @@ public class Tpv implements Serializable {
             return false;
         }
         Tpv other = (Tpv) object;
-        if ((this.codTpv == null && other.codTpv != null) || (this.codTpv != null && !this.codTpv.equals(other.codTpv))) {
+        if ((this.codtpv == null && other.codtpv != null) || (this.codtpv != null && !this.codtpv.equals(other.codtpv))) {
             return false;
         }
         return true;
@@ -120,7 +120,7 @@ public class Tpv implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Tpv[ codTpv=" + codTpv + " ]";
+        return "models.Tpv[ codtpv=" + codtpv + " ]";
     }
     
 }

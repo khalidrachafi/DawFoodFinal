@@ -29,100 +29,100 @@ import javax.persistence.TemporalType;
  * @author khalid
  */
 @Entity
-@Table(name = "Tickets")
+@Table(name = "tickets")
 @NamedQueries({
     @NamedQuery(name = "Tickets.findAll", query = "SELECT t FROM Tickets t"),
-    @NamedQuery(name = "Tickets.findByIdTickets", query = "SELECT t FROM Tickets t WHERE t.idTickets = :idTickets"),
-    @NamedQuery(name = "Tickets.findByCodTransaccion", query = "SELECT t FROM Tickets t WHERE t.codTransaccion = :codTransaccion"),
-    @NamedQuery(name = "Tickets.findByPrecioFinal", query = "SELECT t FROM Tickets t WHERE t.precioFinal = :precioFinal"),
-    @NamedQuery(name = "Tickets.findByFechaHoraTicket", query = "SELECT t FROM Tickets t WHERE t.fechaHoraTicket = :fechaHoraTicket")})
+    @NamedQuery(name = "Tickets.findByIdtickets", query = "SELECT t FROM Tickets t WHERE t.idtickets = :idtickets"),
+    @NamedQuery(name = "Tickets.findByCodtransaccion", query = "SELECT t FROM Tickets t WHERE t.codtransaccion = :codtransaccion"),
+    @NamedQuery(name = "Tickets.findByPreciofinal", query = "SELECT t FROM Tickets t WHERE t.preciofinal = :preciofinal"),
+    @NamedQuery(name = "Tickets.findByFechahoraticket", query = "SELECT t FROM Tickets t WHERE t.fechahoraticket = :fechahoraticket")})
 public class Tickets implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idTickets")
-    private Integer idTickets;
+    @Column(name = "idtickets")
+    private Integer idtickets;
     @Basic(optional = false)
-    @Column(name = "codTransaccion")
-    private int codTransaccion;
+    @Column(name = "codtransaccion")
+    private int codtransaccion;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "precioFinal")
-    private BigDecimal precioFinal;
-    @Column(name = "fechaHoraTicket")
+    @Column(name = "preciofinal")
+    private BigDecimal preciofinal;
+    @Column(name = "fechahoraticket")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaHoraTicket;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tickets")
-    private Collection<DetalleTicket> detalleTicketCollection;
-    @JoinColumn(name = "codTpv", referencedColumnName = "codTpv")
+    private Date fechahoraticket;
+    @JoinColumn(name = "codtpv", referencedColumnName = "codtpv")
     @ManyToOne(optional = false)
-    private Tpv codTpv;
+    private Tpv codtpv;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tickets")
+    private Collection<Detalleticket> detalleticketCollection;
 
     public Tickets() {
     }
 
-    public Tickets(Integer idTickets) {
-        this.idTickets = idTickets;
+    public Tickets(Integer idtickets) {
+        this.idtickets = idtickets;
     }
 
-    public Tickets(Integer idTickets, int codTransaccion) {
-        this.idTickets = idTickets;
-        this.codTransaccion = codTransaccion;
+    public Tickets(Integer idtickets, int codtransaccion) {
+        this.idtickets = idtickets;
+        this.codtransaccion = codtransaccion;
     }
 
-    public Integer getIdTickets() {
-        return idTickets;
+    public Integer getIdtickets() {
+        return idtickets;
     }
 
-    public void setIdTickets(Integer idTickets) {
-        this.idTickets = idTickets;
+    public void setIdtickets(Integer idtickets) {
+        this.idtickets = idtickets;
     }
 
-    public int getCodTransaccion() {
-        return codTransaccion;
+    public int getCodtransaccion() {
+        return codtransaccion;
     }
 
-    public void setCodTransaccion(int codTransaccion) {
-        this.codTransaccion = codTransaccion;
+    public void setCodtransaccion(int codtransaccion) {
+        this.codtransaccion = codtransaccion;
     }
 
-    public BigDecimal getPrecioFinal() {
-        return precioFinal;
+    public BigDecimal getPreciofinal() {
+        return preciofinal;
     }
 
-    public void setPrecioFinal(BigDecimal precioFinal) {
-        this.precioFinal = precioFinal;
+    public void setPreciofinal(BigDecimal preciofinal) {
+        this.preciofinal = preciofinal;
     }
 
-    public Date getFechaHoraTicket() {
-        return fechaHoraTicket;
+    public Date getFechahoraticket() {
+        return fechahoraticket;
     }
 
-    public void setFechaHoraTicket(Date fechaHoraTicket) {
-        this.fechaHoraTicket = fechaHoraTicket;
+    public void setFechahoraticket(Date fechahoraticket) {
+        this.fechahoraticket = fechahoraticket;
     }
 
-    public Collection<DetalleTicket> getDetalleTicketCollection() {
-        return detalleTicketCollection;
+    public Tpv getCodtpv() {
+        return codtpv;
     }
 
-    public void setDetalleTicketCollection(Collection<DetalleTicket> detalleTicketCollection) {
-        this.detalleTicketCollection = detalleTicketCollection;
+    public void setCodtpv(Tpv codtpv) {
+        this.codtpv = codtpv;
     }
 
-    public Tpv getCodTpv() {
-        return codTpv;
+    public Collection<Detalleticket> getDetalleticketCollection() {
+        return detalleticketCollection;
     }
 
-    public void setCodTpv(Tpv codTpv) {
-        this.codTpv = codTpv;
+    public void setDetalleticketCollection(Collection<Detalleticket> detalleticketCollection) {
+        this.detalleticketCollection = detalleticketCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idTickets != null ? idTickets.hashCode() : 0);
+        hash += (idtickets != null ? idtickets.hashCode() : 0);
         return hash;
     }
 
@@ -133,7 +133,7 @@ public class Tickets implements Serializable {
             return false;
         }
         Tickets other = (Tickets) object;
-        if ((this.idTickets == null && other.idTickets != null) || (this.idTickets != null && !this.idTickets.equals(other.idTickets))) {
+        if ((this.idtickets == null && other.idtickets != null) || (this.idtickets != null && !this.idtickets.equals(other.idtickets))) {
             return false;
         }
         return true;
@@ -141,7 +141,7 @@ public class Tickets implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Tickets[ idTickets=" + idTickets + " ]";
+        return "models.Tickets[ idtickets=" + idtickets + " ]";
     }
     
 }

@@ -12,20 +12,20 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import models.Productos;
-import models.TipoProducto;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import models.Tipoproducto;
 
 /**
  *
  * @author khalid
  */
-public class TipoProductoJpaController implements Serializable {
+public class TipoproductoJpaController implements Serializable {
 
-    public TipoProductoJpaController(EntityManagerFactory emf) {
+    public TipoproductoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -34,28 +34,28 @@ public class TipoProductoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(TipoProducto tipoProducto) {
-        if (tipoProducto.getProductosCollection() == null) {
-            tipoProducto.setProductosCollection(new ArrayList<Productos>());
+    public void create(Tipoproducto tipoproducto) {
+        if (tipoproducto.getProductosCollection() == null) {
+            tipoproducto.setProductosCollection(new ArrayList<Productos>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             Collection<Productos> attachedProductosCollection = new ArrayList<Productos>();
-            for (Productos productosCollectionProductosToAttach : tipoProducto.getProductosCollection()) {
-                productosCollectionProductosToAttach = em.getReference(productosCollectionProductosToAttach.getClass(), productosCollectionProductosToAttach.getIdProductos());
+            for (Productos productosCollectionProductosToAttach : tipoproducto.getProductosCollection()) {
+                productosCollectionProductosToAttach = em.getReference(productosCollectionProductosToAttach.getClass(), productosCollectionProductosToAttach.getIdproductos());
                 attachedProductosCollection.add(productosCollectionProductosToAttach);
             }
-            tipoProducto.setProductosCollection(attachedProductosCollection);
-            em.persist(tipoProducto);
-            for (Productos productosCollectionProductos : tipoProducto.getProductosCollection()) {
-                TipoProducto oldCodTipoProductoOfProductosCollectionProductos = productosCollectionProductos.getCodTipoProducto();
-                productosCollectionProductos.setCodTipoProducto(tipoProducto);
+            tipoproducto.setProductosCollection(attachedProductosCollection);
+            em.persist(tipoproducto);
+            for (Productos productosCollectionProductos : tipoproducto.getProductosCollection()) {
+                Tipoproducto oldCodtipoproductoOfProductosCollectionProductos = productosCollectionProductos.getCodtipoproducto();
+                productosCollectionProductos.setCodtipoproducto(tipoproducto);
                 productosCollectionProductos = em.merge(productosCollectionProductos);
-                if (oldCodTipoProductoOfProductosCollectionProductos != null) {
-                    oldCodTipoProductoOfProductosCollectionProductos.getProductosCollection().remove(productosCollectionProductos);
-                    oldCodTipoProductoOfProductosCollectionProductos = em.merge(oldCodTipoProductoOfProductosCollectionProductos);
+                if (oldCodtipoproductoOfProductosCollectionProductos != null) {
+                    oldCodtipoproductoOfProductosCollectionProductos.getProductosCollection().remove(productosCollectionProductos);
+                    oldCodtipoproductoOfProductosCollectionProductos = em.merge(oldCodtipoproductoOfProductosCollectionProductos);
                 }
             }
             em.getTransaction().commit();
@@ -66,21 +66,21 @@ public class TipoProductoJpaController implements Serializable {
         }
     }
 
-    public void edit(TipoProducto tipoProducto) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Tipoproducto tipoproducto) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            TipoProducto persistentTipoProducto = em.find(TipoProducto.class, tipoProducto.getCodTipoProducto());
-            Collection<Productos> productosCollectionOld = persistentTipoProducto.getProductosCollection();
-            Collection<Productos> productosCollectionNew = tipoProducto.getProductosCollection();
+            Tipoproducto persistentTipoproducto = em.find(Tipoproducto.class, tipoproducto.getCodtipoproducto());
+            Collection<Productos> productosCollectionOld = persistentTipoproducto.getProductosCollection();
+            Collection<Productos> productosCollectionNew = tipoproducto.getProductosCollection();
             List<String> illegalOrphanMessages = null;
             for (Productos productosCollectionOldProductos : productosCollectionOld) {
                 if (!productosCollectionNew.contains(productosCollectionOldProductos)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Productos " + productosCollectionOldProductos + " since its codTipoProducto field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Productos " + productosCollectionOldProductos + " since its codtipoproducto field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -88,20 +88,20 @@ public class TipoProductoJpaController implements Serializable {
             }
             Collection<Productos> attachedProductosCollectionNew = new ArrayList<Productos>();
             for (Productos productosCollectionNewProductosToAttach : productosCollectionNew) {
-                productosCollectionNewProductosToAttach = em.getReference(productosCollectionNewProductosToAttach.getClass(), productosCollectionNewProductosToAttach.getIdProductos());
+                productosCollectionNewProductosToAttach = em.getReference(productosCollectionNewProductosToAttach.getClass(), productosCollectionNewProductosToAttach.getIdproductos());
                 attachedProductosCollectionNew.add(productosCollectionNewProductosToAttach);
             }
             productosCollectionNew = attachedProductosCollectionNew;
-            tipoProducto.setProductosCollection(productosCollectionNew);
-            tipoProducto = em.merge(tipoProducto);
+            tipoproducto.setProductosCollection(productosCollectionNew);
+            tipoproducto = em.merge(tipoproducto);
             for (Productos productosCollectionNewProductos : productosCollectionNew) {
                 if (!productosCollectionOld.contains(productosCollectionNewProductos)) {
-                    TipoProducto oldCodTipoProductoOfProductosCollectionNewProductos = productosCollectionNewProductos.getCodTipoProducto();
-                    productosCollectionNewProductos.setCodTipoProducto(tipoProducto);
+                    Tipoproducto oldCodtipoproductoOfProductosCollectionNewProductos = productosCollectionNewProductos.getCodtipoproducto();
+                    productosCollectionNewProductos.setCodtipoproducto(tipoproducto);
                     productosCollectionNewProductos = em.merge(productosCollectionNewProductos);
-                    if (oldCodTipoProductoOfProductosCollectionNewProductos != null && !oldCodTipoProductoOfProductosCollectionNewProductos.equals(tipoProducto)) {
-                        oldCodTipoProductoOfProductosCollectionNewProductos.getProductosCollection().remove(productosCollectionNewProductos);
-                        oldCodTipoProductoOfProductosCollectionNewProductos = em.merge(oldCodTipoProductoOfProductosCollectionNewProductos);
+                    if (oldCodtipoproductoOfProductosCollectionNewProductos != null && !oldCodtipoproductoOfProductosCollectionNewProductos.equals(tipoproducto)) {
+                        oldCodtipoproductoOfProductosCollectionNewProductos.getProductosCollection().remove(productosCollectionNewProductos);
+                        oldCodtipoproductoOfProductosCollectionNewProductos = em.merge(oldCodtipoproductoOfProductosCollectionNewProductos);
                     }
                 }
             }
@@ -109,9 +109,9 @@ public class TipoProductoJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = tipoProducto.getCodTipoProducto();
-                if (findTipoProducto(id) == null) {
-                    throw new NonexistentEntityException("The tipoProducto with id " + id + " no longer exists.");
+                Integer id = tipoproducto.getCodtipoproducto();
+                if (findTipoproducto(id) == null) {
+                    throw new NonexistentEntityException("The tipoproducto with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -127,25 +127,25 @@ public class TipoProductoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            TipoProducto tipoProducto;
+            Tipoproducto tipoproducto;
             try {
-                tipoProducto = em.getReference(TipoProducto.class, id);
-                tipoProducto.getCodTipoProducto();
+                tipoproducto = em.getReference(Tipoproducto.class, id);
+                tipoproducto.getCodtipoproducto();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The tipoProducto with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The tipoproducto with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Collection<Productos> productosCollectionOrphanCheck = tipoProducto.getProductosCollection();
+            Collection<Productos> productosCollectionOrphanCheck = tipoproducto.getProductosCollection();
             for (Productos productosCollectionOrphanCheckProductos : productosCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This TipoProducto (" + tipoProducto + ") cannot be destroyed since the Productos " + productosCollectionOrphanCheckProductos + " in its productosCollection field has a non-nullable codTipoProducto field.");
+                illegalOrphanMessages.add("This Tipoproducto (" + tipoproducto + ") cannot be destroyed since the Productos " + productosCollectionOrphanCheckProductos + " in its productosCollection field has a non-nullable codtipoproducto field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            em.remove(tipoProducto);
+            em.remove(tipoproducto);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -154,19 +154,19 @@ public class TipoProductoJpaController implements Serializable {
         }
     }
 
-    public List<TipoProducto> findTipoProductoEntities() {
-        return findTipoProductoEntities(true, -1, -1);
+    public List<Tipoproducto> findTipoproductoEntities() {
+        return findTipoproductoEntities(true, -1, -1);
     }
 
-    public List<TipoProducto> findTipoProductoEntities(int maxResults, int firstResult) {
-        return findTipoProductoEntities(false, maxResults, firstResult);
+    public List<Tipoproducto> findTipoproductoEntities(int maxResults, int firstResult) {
+        return findTipoproductoEntities(false, maxResults, firstResult);
     }
 
-    private List<TipoProducto> findTipoProductoEntities(boolean all, int maxResults, int firstResult) {
+    private List<Tipoproducto> findTipoproductoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(TipoProducto.class));
+            cq.select(cq.from(Tipoproducto.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -178,20 +178,20 @@ public class TipoProductoJpaController implements Serializable {
         }
     }
 
-    public TipoProducto findTipoProducto(Integer id) {
+    public Tipoproducto findTipoproducto(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(TipoProducto.class, id);
+            return em.find(Tipoproducto.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getTipoProductoCount() {
+    public int getTipoproductoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<TipoProducto> rt = cq.from(TipoProducto.class);
+            Root<Tipoproducto> rt = cq.from(Tipoproducto.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

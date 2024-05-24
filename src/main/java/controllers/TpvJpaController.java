@@ -12,12 +12,12 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import models.Tickets;
-import models.Tpv;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import models.Tpv;
 
 /**
  *
@@ -44,18 +44,18 @@ public class TpvJpaController implements Serializable {
             em.getTransaction().begin();
             Collection<Tickets> attachedTicketsCollection = new ArrayList<Tickets>();
             for (Tickets ticketsCollectionTicketsToAttach : tpv.getTicketsCollection()) {
-                ticketsCollectionTicketsToAttach = em.getReference(ticketsCollectionTicketsToAttach.getClass(), ticketsCollectionTicketsToAttach.getIdTickets());
+                ticketsCollectionTicketsToAttach = em.getReference(ticketsCollectionTicketsToAttach.getClass(), ticketsCollectionTicketsToAttach.getIdtickets());
                 attachedTicketsCollection.add(ticketsCollectionTicketsToAttach);
             }
             tpv.setTicketsCollection(attachedTicketsCollection);
             em.persist(tpv);
             for (Tickets ticketsCollectionTickets : tpv.getTicketsCollection()) {
-                Tpv oldCodTpvOfTicketsCollectionTickets = ticketsCollectionTickets.getCodTpv();
-                ticketsCollectionTickets.setCodTpv(tpv);
+                Tpv oldCodtpvOfTicketsCollectionTickets = ticketsCollectionTickets.getCodtpv();
+                ticketsCollectionTickets.setCodtpv(tpv);
                 ticketsCollectionTickets = em.merge(ticketsCollectionTickets);
-                if (oldCodTpvOfTicketsCollectionTickets != null) {
-                    oldCodTpvOfTicketsCollectionTickets.getTicketsCollection().remove(ticketsCollectionTickets);
-                    oldCodTpvOfTicketsCollectionTickets = em.merge(oldCodTpvOfTicketsCollectionTickets);
+                if (oldCodtpvOfTicketsCollectionTickets != null) {
+                    oldCodtpvOfTicketsCollectionTickets.getTicketsCollection().remove(ticketsCollectionTickets);
+                    oldCodtpvOfTicketsCollectionTickets = em.merge(oldCodtpvOfTicketsCollectionTickets);
                 }
             }
             em.getTransaction().commit();
@@ -71,7 +71,7 @@ public class TpvJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Tpv persistentTpv = em.find(Tpv.class, tpv.getCodTpv());
+            Tpv persistentTpv = em.find(Tpv.class, tpv.getCodtpv());
             Collection<Tickets> ticketsCollectionOld = persistentTpv.getTicketsCollection();
             Collection<Tickets> ticketsCollectionNew = tpv.getTicketsCollection();
             List<String> illegalOrphanMessages = null;
@@ -80,7 +80,7 @@ public class TpvJpaController implements Serializable {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain Tickets " + ticketsCollectionOldTickets + " since its codTpv field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Tickets " + ticketsCollectionOldTickets + " since its codtpv field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -88,7 +88,7 @@ public class TpvJpaController implements Serializable {
             }
             Collection<Tickets> attachedTicketsCollectionNew = new ArrayList<Tickets>();
             for (Tickets ticketsCollectionNewTicketsToAttach : ticketsCollectionNew) {
-                ticketsCollectionNewTicketsToAttach = em.getReference(ticketsCollectionNewTicketsToAttach.getClass(), ticketsCollectionNewTicketsToAttach.getIdTickets());
+                ticketsCollectionNewTicketsToAttach = em.getReference(ticketsCollectionNewTicketsToAttach.getClass(), ticketsCollectionNewTicketsToAttach.getIdtickets());
                 attachedTicketsCollectionNew.add(ticketsCollectionNewTicketsToAttach);
             }
             ticketsCollectionNew = attachedTicketsCollectionNew;
@@ -96,12 +96,12 @@ public class TpvJpaController implements Serializable {
             tpv = em.merge(tpv);
             for (Tickets ticketsCollectionNewTickets : ticketsCollectionNew) {
                 if (!ticketsCollectionOld.contains(ticketsCollectionNewTickets)) {
-                    Tpv oldCodTpvOfTicketsCollectionNewTickets = ticketsCollectionNewTickets.getCodTpv();
-                    ticketsCollectionNewTickets.setCodTpv(tpv);
+                    Tpv oldCodtpvOfTicketsCollectionNewTickets = ticketsCollectionNewTickets.getCodtpv();
+                    ticketsCollectionNewTickets.setCodtpv(tpv);
                     ticketsCollectionNewTickets = em.merge(ticketsCollectionNewTickets);
-                    if (oldCodTpvOfTicketsCollectionNewTickets != null && !oldCodTpvOfTicketsCollectionNewTickets.equals(tpv)) {
-                        oldCodTpvOfTicketsCollectionNewTickets.getTicketsCollection().remove(ticketsCollectionNewTickets);
-                        oldCodTpvOfTicketsCollectionNewTickets = em.merge(oldCodTpvOfTicketsCollectionNewTickets);
+                    if (oldCodtpvOfTicketsCollectionNewTickets != null && !oldCodtpvOfTicketsCollectionNewTickets.equals(tpv)) {
+                        oldCodtpvOfTicketsCollectionNewTickets.getTicketsCollection().remove(ticketsCollectionNewTickets);
+                        oldCodtpvOfTicketsCollectionNewTickets = em.merge(oldCodtpvOfTicketsCollectionNewTickets);
                     }
                 }
             }
@@ -109,7 +109,7 @@ public class TpvJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = tpv.getCodTpv();
+                Integer id = tpv.getCodtpv();
                 if (findTpv(id) == null) {
                     throw new NonexistentEntityException("The tpv with id " + id + " no longer exists.");
                 }
@@ -130,7 +130,7 @@ public class TpvJpaController implements Serializable {
             Tpv tpv;
             try {
                 tpv = em.getReference(Tpv.class, id);
-                tpv.getCodTpv();
+                tpv.getCodtpv();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The tpv with id " + id + " no longer exists.", enfe);
             }
@@ -140,7 +140,7 @@ public class TpvJpaController implements Serializable {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Tpv (" + tpv + ") cannot be destroyed since the Tickets " + ticketsCollectionOrphanCheckTickets + " in its ticketsCollection field has a non-nullable codTpv field.");
+                illegalOrphanMessages.add("This Tpv (" + tpv + ") cannot be destroyed since the Tickets " + ticketsCollectionOrphanCheckTickets + " in its ticketsCollection field has a non-nullable codtpv field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);

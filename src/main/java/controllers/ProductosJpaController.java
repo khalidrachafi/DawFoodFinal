@@ -11,14 +11,14 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import models.TipoProducto;
-import models.DetalleTicket;
-import models.Productos;
+import models.Tipoproducto;
+import models.Detalleticket;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import models.Productos;
 
 /**
  *
@@ -36,36 +36,36 @@ public class ProductosJpaController implements Serializable {
     }
 
     public void create(Productos productos) {
-        if (productos.getDetalleTicketCollection() == null) {
-            productos.setDetalleTicketCollection(new ArrayList<DetalleTicket>());
+        if (productos.getDetalleticketCollection() == null) {
+            productos.setDetalleticketCollection(new ArrayList<Detalleticket>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            TipoProducto codTipoProducto = productos.getCodTipoProducto();
-            if (codTipoProducto != null) {
-                codTipoProducto = em.getReference(codTipoProducto.getClass(), codTipoProducto.getCodTipoProducto());
-                productos.setCodTipoProducto(codTipoProducto);
+            Tipoproducto codtipoproducto = productos.getCodtipoproducto();
+            if (codtipoproducto != null) {
+                codtipoproducto = em.getReference(codtipoproducto.getClass(), codtipoproducto.getCodtipoproducto());
+                productos.setCodtipoproducto(codtipoproducto);
             }
-            Collection<DetalleTicket> attachedDetalleTicketCollection = new ArrayList<DetalleTicket>();
-            for (DetalleTicket detalleTicketCollectionDetalleTicketToAttach : productos.getDetalleTicketCollection()) {
-                detalleTicketCollectionDetalleTicketToAttach = em.getReference(detalleTicketCollectionDetalleTicketToAttach.getClass(), detalleTicketCollectionDetalleTicketToAttach.getDetalleTicketPK());
-                attachedDetalleTicketCollection.add(detalleTicketCollectionDetalleTicketToAttach);
+            Collection<Detalleticket> attachedDetalleticketCollection = new ArrayList<Detalleticket>();
+            for (Detalleticket detalleticketCollectionDetalleticketToAttach : productos.getDetalleticketCollection()) {
+                detalleticketCollectionDetalleticketToAttach = em.getReference(detalleticketCollectionDetalleticketToAttach.getClass(), detalleticketCollectionDetalleticketToAttach.getDetalleticketPK());
+                attachedDetalleticketCollection.add(detalleticketCollectionDetalleticketToAttach);
             }
-            productos.setDetalleTicketCollection(attachedDetalleTicketCollection);
+            productos.setDetalleticketCollection(attachedDetalleticketCollection);
             em.persist(productos);
-            if (codTipoProducto != null) {
-                codTipoProducto.getProductosCollection().add(productos);
-                codTipoProducto = em.merge(codTipoProducto);
+            if (codtipoproducto != null) {
+                codtipoproducto.getProductosCollection().add(productos);
+                codtipoproducto = em.merge(codtipoproducto);
             }
-            for (DetalleTicket detalleTicketCollectionDetalleTicket : productos.getDetalleTicketCollection()) {
-                Productos oldProductosOfDetalleTicketCollectionDetalleTicket = detalleTicketCollectionDetalleTicket.getProductos();
-                detalleTicketCollectionDetalleTicket.setProductos(productos);
-                detalleTicketCollectionDetalleTicket = em.merge(detalleTicketCollectionDetalleTicket);
-                if (oldProductosOfDetalleTicketCollectionDetalleTicket != null) {
-                    oldProductosOfDetalleTicketCollectionDetalleTicket.getDetalleTicketCollection().remove(detalleTicketCollectionDetalleTicket);
-                    oldProductosOfDetalleTicketCollectionDetalleTicket = em.merge(oldProductosOfDetalleTicketCollectionDetalleTicket);
+            for (Detalleticket detalleticketCollectionDetalleticket : productos.getDetalleticketCollection()) {
+                Productos oldProductosOfDetalleticketCollectionDetalleticket = detalleticketCollectionDetalleticket.getProductos();
+                detalleticketCollectionDetalleticket.setProductos(productos);
+                detalleticketCollectionDetalleticket = em.merge(detalleticketCollectionDetalleticket);
+                if (oldProductosOfDetalleticketCollectionDetalleticket != null) {
+                    oldProductosOfDetalleticketCollectionDetalleticket.getDetalleticketCollection().remove(detalleticketCollectionDetalleticket);
+                    oldProductosOfDetalleticketCollectionDetalleticket = em.merge(oldProductosOfDetalleticketCollectionDetalleticket);
                 }
             }
             em.getTransaction().commit();
@@ -81,51 +81,51 @@ public class ProductosJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Productos persistentProductos = em.find(Productos.class, productos.getIdProductos());
-            TipoProducto codTipoProductoOld = persistentProductos.getCodTipoProducto();
-            TipoProducto codTipoProductoNew = productos.getCodTipoProducto();
-            Collection<DetalleTicket> detalleTicketCollectionOld = persistentProductos.getDetalleTicketCollection();
-            Collection<DetalleTicket> detalleTicketCollectionNew = productos.getDetalleTicketCollection();
+            Productos persistentProductos = em.find(Productos.class, productos.getIdproductos());
+            Tipoproducto codtipoproductoOld = persistentProductos.getCodtipoproducto();
+            Tipoproducto codtipoproductoNew = productos.getCodtipoproducto();
+            Collection<Detalleticket> detalleticketCollectionOld = persistentProductos.getDetalleticketCollection();
+            Collection<Detalleticket> detalleticketCollectionNew = productos.getDetalleticketCollection();
             List<String> illegalOrphanMessages = null;
-            for (DetalleTicket detalleTicketCollectionOldDetalleTicket : detalleTicketCollectionOld) {
-                if (!detalleTicketCollectionNew.contains(detalleTicketCollectionOldDetalleTicket)) {
+            for (Detalleticket detalleticketCollectionOldDetalleticket : detalleticketCollectionOld) {
+                if (!detalleticketCollectionNew.contains(detalleticketCollectionOldDetalleticket)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain DetalleTicket " + detalleTicketCollectionOldDetalleTicket + " since its productos field is not nullable.");
+                    illegalOrphanMessages.add("You must retain Detalleticket " + detalleticketCollectionOldDetalleticket + " since its productos field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            if (codTipoProductoNew != null) {
-                codTipoProductoNew = em.getReference(codTipoProductoNew.getClass(), codTipoProductoNew.getCodTipoProducto());
-                productos.setCodTipoProducto(codTipoProductoNew);
+            if (codtipoproductoNew != null) {
+                codtipoproductoNew = em.getReference(codtipoproductoNew.getClass(), codtipoproductoNew.getCodtipoproducto());
+                productos.setCodtipoproducto(codtipoproductoNew);
             }
-            Collection<DetalleTicket> attachedDetalleTicketCollectionNew = new ArrayList<DetalleTicket>();
-            for (DetalleTicket detalleTicketCollectionNewDetalleTicketToAttach : detalleTicketCollectionNew) {
-                detalleTicketCollectionNewDetalleTicketToAttach = em.getReference(detalleTicketCollectionNewDetalleTicketToAttach.getClass(), detalleTicketCollectionNewDetalleTicketToAttach.getDetalleTicketPK());
-                attachedDetalleTicketCollectionNew.add(detalleTicketCollectionNewDetalleTicketToAttach);
+            Collection<Detalleticket> attachedDetalleticketCollectionNew = new ArrayList<Detalleticket>();
+            for (Detalleticket detalleticketCollectionNewDetalleticketToAttach : detalleticketCollectionNew) {
+                detalleticketCollectionNewDetalleticketToAttach = em.getReference(detalleticketCollectionNewDetalleticketToAttach.getClass(), detalleticketCollectionNewDetalleticketToAttach.getDetalleticketPK());
+                attachedDetalleticketCollectionNew.add(detalleticketCollectionNewDetalleticketToAttach);
             }
-            detalleTicketCollectionNew = attachedDetalleTicketCollectionNew;
-            productos.setDetalleTicketCollection(detalleTicketCollectionNew);
+            detalleticketCollectionNew = attachedDetalleticketCollectionNew;
+            productos.setDetalleticketCollection(detalleticketCollectionNew);
             productos = em.merge(productos);
-            if (codTipoProductoOld != null && !codTipoProductoOld.equals(codTipoProductoNew)) {
-                codTipoProductoOld.getProductosCollection().remove(productos);
-                codTipoProductoOld = em.merge(codTipoProductoOld);
+            if (codtipoproductoOld != null && !codtipoproductoOld.equals(codtipoproductoNew)) {
+                codtipoproductoOld.getProductosCollection().remove(productos);
+                codtipoproductoOld = em.merge(codtipoproductoOld);
             }
-            if (codTipoProductoNew != null && !codTipoProductoNew.equals(codTipoProductoOld)) {
-                codTipoProductoNew.getProductosCollection().add(productos);
-                codTipoProductoNew = em.merge(codTipoProductoNew);
+            if (codtipoproductoNew != null && !codtipoproductoNew.equals(codtipoproductoOld)) {
+                codtipoproductoNew.getProductosCollection().add(productos);
+                codtipoproductoNew = em.merge(codtipoproductoNew);
             }
-            for (DetalleTicket detalleTicketCollectionNewDetalleTicket : detalleTicketCollectionNew) {
-                if (!detalleTicketCollectionOld.contains(detalleTicketCollectionNewDetalleTicket)) {
-                    Productos oldProductosOfDetalleTicketCollectionNewDetalleTicket = detalleTicketCollectionNewDetalleTicket.getProductos();
-                    detalleTicketCollectionNewDetalleTicket.setProductos(productos);
-                    detalleTicketCollectionNewDetalleTicket = em.merge(detalleTicketCollectionNewDetalleTicket);
-                    if (oldProductosOfDetalleTicketCollectionNewDetalleTicket != null && !oldProductosOfDetalleTicketCollectionNewDetalleTicket.equals(productos)) {
-                        oldProductosOfDetalleTicketCollectionNewDetalleTicket.getDetalleTicketCollection().remove(detalleTicketCollectionNewDetalleTicket);
-                        oldProductosOfDetalleTicketCollectionNewDetalleTicket = em.merge(oldProductosOfDetalleTicketCollectionNewDetalleTicket);
+            for (Detalleticket detalleticketCollectionNewDetalleticket : detalleticketCollectionNew) {
+                if (!detalleticketCollectionOld.contains(detalleticketCollectionNewDetalleticket)) {
+                    Productos oldProductosOfDetalleticketCollectionNewDetalleticket = detalleticketCollectionNewDetalleticket.getProductos();
+                    detalleticketCollectionNewDetalleticket.setProductos(productos);
+                    detalleticketCollectionNewDetalleticket = em.merge(detalleticketCollectionNewDetalleticket);
+                    if (oldProductosOfDetalleticketCollectionNewDetalleticket != null && !oldProductosOfDetalleticketCollectionNewDetalleticket.equals(productos)) {
+                        oldProductosOfDetalleticketCollectionNewDetalleticket.getDetalleticketCollection().remove(detalleticketCollectionNewDetalleticket);
+                        oldProductosOfDetalleticketCollectionNewDetalleticket = em.merge(oldProductosOfDetalleticketCollectionNewDetalleticket);
                     }
                 }
             }
@@ -133,7 +133,7 @@ public class ProductosJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = productos.getIdProductos();
+                Integer id = productos.getIdproductos();
                 if (findProductos(id) == null) {
                     throw new NonexistentEntityException("The productos with id " + id + " no longer exists.");
                 }
@@ -154,25 +154,25 @@ public class ProductosJpaController implements Serializable {
             Productos productos;
             try {
                 productos = em.getReference(Productos.class, id);
-                productos.getIdProductos();
+                productos.getIdproductos();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The productos with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Collection<DetalleTicket> detalleTicketCollectionOrphanCheck = productos.getDetalleTicketCollection();
-            for (DetalleTicket detalleTicketCollectionOrphanCheckDetalleTicket : detalleTicketCollectionOrphanCheck) {
+            Collection<Detalleticket> detalleticketCollectionOrphanCheck = productos.getDetalleticketCollection();
+            for (Detalleticket detalleticketCollectionOrphanCheckDetalleticket : detalleticketCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Productos (" + productos + ") cannot be destroyed since the DetalleTicket " + detalleTicketCollectionOrphanCheckDetalleTicket + " in its detalleTicketCollection field has a non-nullable productos field.");
+                illegalOrphanMessages.add("This Productos (" + productos + ") cannot be destroyed since the Detalleticket " + detalleticketCollectionOrphanCheckDetalleticket + " in its detalleticketCollection field has a non-nullable productos field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            TipoProducto codTipoProducto = productos.getCodTipoProducto();
-            if (codTipoProducto != null) {
-                codTipoProducto.getProductosCollection().remove(productos);
-                codTipoProducto = em.merge(codTipoProducto);
+            Tipoproducto codtipoproducto = productos.getCodtipoproducto();
+            if (codtipoproducto != null) {
+                codtipoproducto.getProductosCollection().remove(productos);
+                codtipoproducto = em.merge(codtipoproducto);
             }
             em.remove(productos);
             em.getTransaction().commit();

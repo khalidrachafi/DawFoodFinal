@@ -13,9 +13,9 @@ public class Editar extends javax.swing.JDialog {
     /**
      * Creates new form Editar
      */
-     private VentanaPrincipal padre;
+     private GestionarMenu padre;
      
-    public Editar(VentanaPrincipal ventana, boolean modal) {
+    public Editar(GestionarMenu ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
         initComponents();

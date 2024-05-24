@@ -80,6 +80,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gestionar Productos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProductosBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ComprarBtn">
       <Properties>
@@ -93,6 +96,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ver Tickets"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TicketsBtnActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="CerrarPrincipal">
       <Properties>
