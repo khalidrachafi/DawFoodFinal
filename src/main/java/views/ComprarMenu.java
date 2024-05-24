@@ -44,6 +44,11 @@ public class ComprarMenu extends javax.swing.JDialog {
         PostreBtn.setText("Postre");
 
         VolverBtn.setText("Volver atrás");
+        VolverBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,6 +87,11 @@ public class ComprarMenu extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VolverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBtnActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_VolverBtnActionPerformed
 
     /**
      * @param args the command line arguments
