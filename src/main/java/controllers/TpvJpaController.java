@@ -21,7 +21,7 @@ import models.Tpv;
 
 /**
  *
- * @author khalid
+ * @author krach
  */
 public class TpvJpaController implements Serializable {
 
@@ -109,7 +109,7 @@ public class TpvJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = tpv.getCodtpv();
+                int id = tpv.getCodtpv();
                 if (findTpv(id) == null) {
                     throw new NonexistentEntityException("The tpv with id " + id + " no longer exists.");
                 }
@@ -122,7 +122,7 @@ public class TpvJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(int id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -178,7 +178,7 @@ public class TpvJpaController implements Serializable {
         }
     }
 
-    public Tpv findTpv(Integer id) {
+    public Tpv findTpv(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Tpv.class, id);

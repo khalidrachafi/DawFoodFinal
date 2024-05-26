@@ -25,6 +25,9 @@ public class Carrito extends javax.swing.JDialog {
         initComponents();
         this.setTitle("Carrito de productos");
     }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,67 +38,87 @@ public class Carrito extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ComprarBtn = new javax.swing.JButton();
-        CancelarCarritoBtn = new javax.swing.JButton();
+        ComprarCarritoBtn = new javax.swing.JButton();
+        VolverAtrasCarritoBtn = new javax.swing.JButton();
         NoComprarBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        MostrarCarrito = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        ComprarBtn.setText("Comprar");
-        ComprarBtn.addActionListener(new java.awt.event.ActionListener() {
+        ComprarCarritoBtn.setText("Comprar");
+        ComprarCarritoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComprarBtnActionPerformed(evt);
+                ComprarCarritoBtnActionPerformed(evt);
             }
         });
 
-        CancelarCarritoBtn.setText("Cancelar");
-        CancelarCarritoBtn.addActionListener(new java.awt.event.ActionListener() {
+        VolverAtrasCarritoBtn.setText("Volver al menu de selección");
+        VolverAtrasCarritoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarCarritoBtnActionPerformed(evt);
+                VolverAtrasCarritoBtnActionPerformed(evt);
             }
         });
 
         NoComprarBtn.setText("No Comprar");
+
+        jLabel1.setText("Productos en el carrito:");
+
+        MostrarCarrito.setColumns(20);
+        MostrarCarrito.setRows(5);
+        jScrollPane2.setViewportView(MostrarCarrito);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(ComprarBtn)
-                .addGap(45, 45, 45)
+                .addGap(40, 40, 40)
+                .addComponent(ComprarCarritoBtn)
+                .addGap(73, 73, 73)
                 .addComponent(NoComprarBtn)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CancelarCarritoBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(VolverAtrasCarritoBtn)))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(171, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComprarBtn)
+                    .addComponent(ComprarCarritoBtn)
                     .addComponent(NoComprarBtn))
-                .addGap(65, 65, 65)
-                .addComponent(CancelarCarritoBtn)
+                .addGap(24, 24, 24)
+                .addComponent(VolverAtrasCarritoBtn)
                 .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ComprarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarBtnActionPerformed
+    private void ComprarCarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarCarritoBtnActionPerformed
         // TODO add your handling code here:
       new PasarelaPago(this, true).setVisible(true);  
-    }//GEN-LAST:event_ComprarBtnActionPerformed
+    }//GEN-LAST:event_ComprarCarritoBtnActionPerformed
 
-    private void CancelarCarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarCarritoBtnActionPerformed
+    private void VolverAtrasCarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverAtrasCarritoBtnActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_CancelarCarritoBtnActionPerformed
+    }//GEN-LAST:event_VolverAtrasCarritoBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,8 +163,11 @@ public class Carrito extends javax.swing.JDialog {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CancelarCarritoBtn;
-    private javax.swing.JButton ComprarBtn;
+    private javax.swing.JButton ComprarCarritoBtn;
+    private javax.swing.JTextArea MostrarCarrito;
     private javax.swing.JButton NoComprarBtn;
+    private javax.swing.JButton VolverAtrasCarritoBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

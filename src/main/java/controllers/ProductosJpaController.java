@@ -22,7 +22,7 @@ import models.Productos;
 
 /**
  *
- * @author khalid
+ * @author krach
  */
 public class ProductosJpaController implements Serializable {
 
@@ -133,7 +133,7 @@ public class ProductosJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = productos.getIdproductos();
+                int id = productos.getIdproductos();
                 if (findProductos(id) == null) {
                     throw new NonexistentEntityException("The productos with id " + id + " no longer exists.");
                 }
@@ -146,7 +146,7 @@ public class ProductosJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(int id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -207,7 +207,7 @@ public class ProductosJpaController implements Serializable {
         }
     }
 
-    public Productos findProductos(Integer id) {
+    public Productos findProductos(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Productos.class, id);
@@ -228,5 +228,16 @@ public class ProductosJpaController implements Serializable {
             em.close();
         }
     }
+    
+    
+    public Productos findByIdproductos(String idproductos){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Productos.findByIdproductos");
+        // Se establece el parámetro de la consulta
+        q.setParameter("idproductos", idproductos);
+        return (Productos)q.getSingleResult();
+    }
+    
     
 }

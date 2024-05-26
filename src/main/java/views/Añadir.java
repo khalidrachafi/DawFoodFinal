@@ -4,6 +4,9 @@
  */
 package views;
 
+import controllers.ProductosJpaController;
+import models.Productos;
+
 /**
  *
  * @author khalid
@@ -70,6 +73,11 @@ public class Añadir extends javax.swing.JDialog {
         });
 
         GuardarAñadirBtn.setText("Guardar");
+        GuardarAñadirBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarAñadirBtnActionPerformed(evt);
+            }
+        });
 
         CancelarAñadirBtn.setText("Cancelar");
         CancelarAñadirBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -164,6 +172,28 @@ public class Añadir extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_CancelarAñadirBtnActionPerformed
 
+    private void GuardarAñadirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarAñadirBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_GuardarAñadirBtnActionPerformed
+        
+    public String ComprobarTipoProducto(String tipoProducto){
+        
+        try {
+            if (tipoProducto.equalsIgnoreCase("Comida")) {
+            return "Comida";
+        }else if (tipoProducto.equalsIgnoreCase("Bebida")) {
+            return "Bebida";
+        }else if (tipoProducto.equalsIgnoreCase("Postre")) {
+            return "Postre";
+        }
+        } catch (Exception e) {
+            e.notifyAll();
+        }
+        return null;           
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

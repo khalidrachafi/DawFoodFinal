@@ -21,7 +21,7 @@ import models.Tipoproducto;
 
 /**
  *
- * @author khalid
+ * @author krach
  */
 public class TipoproductoJpaController implements Serializable {
 
@@ -109,7 +109,7 @@ public class TipoproductoJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = tipoproducto.getCodtipoproducto();
+                int id = tipoproducto.getCodtipoproducto();
                 if (findTipoproducto(id) == null) {
                     throw new NonexistentEntityException("The tipoproducto with id " + id + " no longer exists.");
                 }
@@ -122,7 +122,7 @@ public class TipoproductoJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(int id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -178,7 +178,7 @@ public class TipoproductoJpaController implements Serializable {
         }
     }
 
-    public Tipoproducto findTipoproducto(Integer id) {
+    public Tipoproducto findTipoproducto(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Tipoproducto.class, id);
@@ -199,5 +199,25 @@ public class TipoproductoJpaController implements Serializable {
             em.close();
         }
     }
+    
+    public Tipoproducto findByNombretipoprodcucto(String nombretipoprodcucto){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Tipoproducto.findByNombretipoprodcucto");
+        // Se establece el parámetro de la consulta
+        q.setParameter("nombretipoprodcucto", nombretipoprodcucto);
+        return (Tipoproducto)q.getResultList();
+    }
+    
+    
+    public Tipoproducto findByCategoria(String categoria){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Tipoproducto.findByCategoria");
+        // Se establece el parámetro de la consulta
+        q.setParameter("categoria", categoria);
+        return (Tipoproducto)q.getResultList();
+    }
+    
     
 }

@@ -42,16 +42,16 @@ public class Productos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idproductos")
-    private Integer idproductos;
+    private int idproductos;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "iva")
-    private Double iva;
+    private double iva;
     @Column(name = "stock")
-    private Integer stock;
+    private int stock;
     @Column(name = "descripcion")
     private String descripcion;
     @Column(name = "precio")
-    private BigDecimal precio;
+    private double precio;
     @Column(name = "nomproducto")
     private String nomproducto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
@@ -67,27 +67,38 @@ public class Productos implements Serializable {
         this.idproductos = idproductos;
     }
 
-    public Integer getIdproductos() {
+    public Productos(Double iva, Integer stock, String descripcion, double precio, String nomproducto, Tipoproducto codtipoproducto) {
+        this.iva = iva;
+        this.stock = stock;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.nomproducto = nomproducto;
+        this.codtipoproducto = codtipoproducto;
+    }
+    
+    
+
+    public int getIdproductos() {
         return idproductos;
     }
 
-    public void setIdproductos(Integer idproductos) {
+    public void setIdproductos(int idproductos) {
         this.idproductos = idproductos;
     }
 
-    public Double getIva() {
+    public double getIva() {
         return iva;
     }
 
-    public void setIva(Double iva) {
+    public void setIva(double iva) {
         this.iva = iva;
     }
 
-    public Integer getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(Integer stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 
@@ -99,11 +110,11 @@ public class Productos implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigDecimal precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
@@ -133,23 +144,27 @@ public class Productos implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (idproductos != null ? idproductos.hashCode() : 0);
+        int hash = 5;
+        hash = 97 * hash + this.idproductos;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Productos)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Productos other = (Productos) object;
-        if ((this.idproductos == null && other.idproductos != null) || (this.idproductos != null && !this.idproductos.equals(other.idproductos))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Productos other = (Productos) obj;
+        return this.idproductos == other.idproductos;
     }
+
+    
 
     @Override
     public String toString() {

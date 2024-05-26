@@ -40,7 +40,7 @@ public class Tpv implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "codtpv")
-    private Integer codtpv;
+    private int codtpv;
     @Column(name = "passwordadmin")
     private String passwordadmin;
     @Column(name = "ubicacion")
@@ -54,15 +54,15 @@ public class Tpv implements Serializable {
     public Tpv() {
     }
 
-    public Tpv(Integer codtpv) {
+    public Tpv(int codtpv) {
         this.codtpv = codtpv;
     }
 
-    public Integer getCodtpv() {
+    public int getCodtpv() {
         return codtpv;
     }
 
-    public void setCodtpv(Integer codtpv) {
+    public void setCodtpv(int codtpv) {
         this.codtpv = codtpv;
     }
 
@@ -100,23 +100,27 @@ public class Tpv implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (codtpv != null ? codtpv.hashCode() : 0);
+        int hash = 7;
+        hash = 79 * hash + this.codtpv;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tpv)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Tpv other = (Tpv) object;
-        if ((this.codtpv == null && other.codtpv != null) || (this.codtpv != null && !this.codtpv.equals(other.codtpv))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Tpv other = (Tpv) obj;
+        return this.codtpv == other.codtpv;
     }
+
+    
 
     @Override
     public String toString() {

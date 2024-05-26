@@ -21,7 +21,7 @@ import models.Tickets;
 
 /**
  *
- * @author khalid
+ * @author krach
  */
 public class DetalleticketJpaController implements Serializable {
 
@@ -38,8 +38,8 @@ public class DetalleticketJpaController implements Serializable {
         if (detalleticket.getDetalleticketPK() == null) {
             detalleticket.setDetalleticketPK(new DetalleticketPK());
         }
-        detalleticket.getDetalleticketPK().setIdproductos(detalleticket.getProductos().getIdproductos());
         detalleticket.getDetalleticketPK().setIdtickets(detalleticket.getTickets().getIdtickets());
+        detalleticket.getDetalleticketPK().setIdproductos(detalleticket.getProductos().getIdproductos());
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -77,8 +77,8 @@ public class DetalleticketJpaController implements Serializable {
     }
 
     public void edit(Detalleticket detalleticket) throws NonexistentEntityException, Exception {
-        detalleticket.getDetalleticketPK().setIdproductos(detalleticket.getProductos().getIdproductos());
         detalleticket.getDetalleticketPK().setIdtickets(detalleticket.getTickets().getIdtickets());
+        detalleticket.getDetalleticketPK().setIdproductos(detalleticket.getProductos().getIdproductos());
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -206,5 +206,35 @@ public class DetalleticketJpaController implements Serializable {
             em.close();
         }
     }
+    
+    
+    public Detalleticket findAll(){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Detalleticket.findAll");
+
+        return (Detalleticket)q.getResultList();
+    }
+    
+    
+    public Detalleticket findByIdproductos(String idproductos){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Detalleticket.findByIdproductos");
+        // Se establece el parámetro de la consulta
+        q.setParameter("idproductos", idproductos);
+        return (Detalleticket)q.getResultList();
+    }
+    
+    
+    public Detalleticket findByIdtickets(String idtickets){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Detalleticket.findByIdtickets");
+        // Se establece el parámetro de la consulta
+        q.setParameter("idtickets", idtickets);
+        return (Detalleticket)q.getResultList();
+    }
+    
     
 }
