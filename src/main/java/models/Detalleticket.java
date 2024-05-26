@@ -16,14 +16,14 @@ import javax.persistence.Table;
 
 /**
  *
- * @author khalid
+ * @author krach
  */
 @Entity
 @Table(name = "detalleticket")
 @NamedQueries({
     @NamedQuery(name = "Detalleticket.findAll", query = "SELECT d FROM Detalleticket d"),
     @NamedQuery(name = "Detalleticket.findByCantidad", query = "SELECT d FROM Detalleticket d WHERE d.cantidad = :cantidad"),
-    @NamedQuery(name = " ", query = "SELECT d FROM Detalleticket d WHERE d.detalleticketPK.idproductos = :idproductos"),
+    @NamedQuery(name = "Detalleticket.findByIdproductos", query = "SELECT d FROM Detalleticket d WHERE d.detalleticketPK.idproductos = :idproductos"),
     @NamedQuery(name = "Detalleticket.findByIdtickets", query = "SELECT d FROM Detalleticket d WHERE d.detalleticketPK.idtickets = :idtickets")})
 public class Detalleticket implements Serializable {
 
@@ -31,7 +31,7 @@ public class Detalleticket implements Serializable {
     @EmbeddedId
     protected DetalleticketPK detalleticketPK;
     @Column(name = "cantidad")
-    private int cantidad;
+    private Integer cantidad;
     @JoinColumn(name = "idproductos", referencedColumnName = "idproductos", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Productos productos;
@@ -58,11 +58,11 @@ public class Detalleticket implements Serializable {
         this.detalleticketPK = detalleticketPK;
     }
 
-    public int getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 

@@ -20,7 +20,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author khalid
+ * @author krach
  */
 @Entity
 @Table(name = "tipoproducto")
@@ -38,7 +38,7 @@ public class Tipoproducto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "codtipoproducto")
-    private int codtipoproducto;
+    private Integer codtipoproducto;
     @Column(name = "categoria")
     private String categoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codtipoproducto")
@@ -47,7 +47,7 @@ public class Tipoproducto implements Serializable {
     public Tipoproducto() {
     }
 
-    public Tipoproducto(int codtipoproducto) {
+    public Tipoproducto(Integer codtipoproducto) {
         this.codtipoproducto = codtipoproducto;
     }
 
@@ -59,11 +59,11 @@ public class Tipoproducto implements Serializable {
         this.nombretipoprodcucto = nombretipoprodcucto;
     }
 
-    public int getCodtipoproducto() {
+    public Integer getCodtipoproducto() {
         return codtipoproducto;
     }
 
-    public void setCodtipoproducto(int codtipoproducto) {
+    public void setCodtipoproducto(Integer codtipoproducto) {
         this.codtipoproducto = codtipoproducto;
     }
 
@@ -85,27 +85,23 @@ public class Tipoproducto implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + this.codtipoproducto;
+        int hash = 0;
+        hash += (codtipoproducto != null ? codtipoproducto.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Tipoproducto)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        Tipoproducto other = (Tipoproducto) object;
+        if ((this.codtipoproducto == null && other.codtipoproducto != null) || (this.codtipoproducto != null && !this.codtipoproducto.equals(other.codtipoproducto))) {
             return false;
         }
-        final Tipoproducto other = (Tipoproducto) obj;
-        return this.codtipoproducto == other.codtipoproducto;
+        return true;
     }
-
-    
 
     @Override
     public String toString() {

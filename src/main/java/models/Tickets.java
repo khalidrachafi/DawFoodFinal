@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author khalid
+ * @author krach
  */
 @Entity
 @Table(name = "tickets")
@@ -43,13 +43,13 @@ public class Tickets implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idtickets")
-    private int idtickets;
+    private Integer idtickets;
     @Basic(optional = false)
     @Column(name = "codtransaccion")
     private int codtransaccion;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "preciofinal")
-    private double preciofinal;
+    private BigDecimal preciofinal;
     @Column(name = "fechahoraticket")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechahoraticket;
@@ -62,20 +62,20 @@ public class Tickets implements Serializable {
     public Tickets() {
     }
 
-    public Tickets(int idtickets) {
+    public Tickets(Integer idtickets) {
         this.idtickets = idtickets;
     }
 
-    public Tickets(int idtickets, int codtransaccion) {
+    public Tickets(Integer idtickets, int codtransaccion) {
         this.idtickets = idtickets;
         this.codtransaccion = codtransaccion;
     }
 
-    public int getIdtickets() {
+    public Integer getIdtickets() {
         return idtickets;
     }
 
-    public void setIdtickets(int idtickets) {
+    public void setIdtickets(Integer idtickets) {
         this.idtickets = idtickets;
     }
 
@@ -87,11 +87,11 @@ public class Tickets implements Serializable {
         this.codtransaccion = codtransaccion;
     }
 
-    public double getPreciofinal() {
+    public BigDecimal getPreciofinal() {
         return preciofinal;
     }
 
-    public void setPreciofinal(double preciofinal) {
+    public void setPreciofinal(BigDecimal preciofinal) {
         this.preciofinal = preciofinal;
     }
 
@@ -121,27 +121,23 @@ public class Tickets implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + this.idtickets;
+        int hash = 0;
+        hash += (idtickets != null ? idtickets.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Tickets)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        Tickets other = (Tickets) object;
+        if ((this.idtickets == null && other.idtickets != null) || (this.idtickets != null && !this.idtickets.equals(other.idtickets))) {
             return false;
         }
-        final Tickets other = (Tickets) obj;
-        return this.idtickets == other.idtickets;
+        return true;
     }
-
-    
 
     @Override
     public String toString() {

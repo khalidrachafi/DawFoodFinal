@@ -133,7 +133,7 @@ public class TicketsJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                int id = tickets.getIdtickets();
+                Integer id = tickets.getIdtickets();
                 if (findTickets(id) == null) {
                     throw new NonexistentEntityException("The tickets with id " + id + " no longer exists.");
                 }
@@ -146,7 +146,7 @@ public class TicketsJpaController implements Serializable {
         }
     }
 
-    public void destroy(int id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -207,7 +207,7 @@ public class TicketsJpaController implements Serializable {
         }
     }
 
-    public Tickets findTickets(int id) {
+    public Tickets findTickets(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Tickets.class, id);
@@ -228,15 +228,5 @@ public class TicketsJpaController implements Serializable {
             em.close();
         }
     }
-    
-    
-    public Tickets findAll(){
-        EntityManager em = getEntityManager();
-        // Se crea la query usando el nombre de la named query
-        Query q = em.createNamedQuery("Tickets.findAll");
-
-        return (Tickets)q.getResultList();
-    }
-    
     
 }

@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author khalid
+ * @author krach
  */
 @Entity
 @Table(name = "tpv")
@@ -40,7 +40,7 @@ public class Tpv implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "codtpv")
-    private int codtpv;
+    private Integer codtpv;
     @Column(name = "passwordadmin")
     private String passwordadmin;
     @Column(name = "ubicacion")
@@ -54,15 +54,15 @@ public class Tpv implements Serializable {
     public Tpv() {
     }
 
-    public Tpv(int codtpv) {
+    public Tpv(Integer codtpv) {
         this.codtpv = codtpv;
     }
 
-    public int getCodtpv() {
+    public Integer getCodtpv() {
         return codtpv;
     }
 
-    public void setCodtpv(int codtpv) {
+    public void setCodtpv(Integer codtpv) {
         this.codtpv = codtpv;
     }
 
@@ -100,27 +100,23 @@ public class Tpv implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.codtpv;
+        int hash = 0;
+        hash += (codtpv != null ? codtpv.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Tpv)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        Tpv other = (Tpv) object;
+        if ((this.codtpv == null && other.codtpv != null) || (this.codtpv != null && !this.codtpv.equals(other.codtpv))) {
             return false;
         }
-        final Tpv other = (Tpv) obj;
-        return this.codtpv == other.codtpv;
+        return true;
     }
-
-    
 
     @Override
     public String toString() {
