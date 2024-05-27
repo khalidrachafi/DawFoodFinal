@@ -51,6 +51,19 @@ public class Tipoproducto implements Serializable {
         this.codtipoproducto = codtipoproducto;
     }
 
+    public Tipoproducto(String nombretipoprodcucto, String categoria) {
+        this.nombretipoprodcucto = nombretipoprodcucto;
+        this.categoria = categoria;
+    }
+
+    public Tipoproducto(String nombretipoprodcucto, Integer codtipoproducto, String categoria) {
+        this.nombretipoprodcucto = nombretipoprodcucto;
+        this.codtipoproducto = codtipoproducto;
+        this.categoria = categoria;
+    }
+    
+    
+
     public String getNombretipoprodcucto() {
         return nombretipoprodcucto;
     }

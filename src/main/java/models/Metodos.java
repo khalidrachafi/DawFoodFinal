@@ -1,36 +1,23 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Main;
+package models;
 
 import controllers.DetalleticketJpaController;
 import controllers.ProductosJpaController;
 import controllers.TicketsJpaController;
 import controllers.TipoproductoJpaController;
 import controllers.TpvJpaController;
-import java.math.BigDecimal;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.swing.JOptionPane;
-import models.Detalleticket;
-import models.Productos;
-import models.Tickets;
-import models.Tipoproducto;
-import views.ComprarMenu;
-import views.VentanaPrincipal;
 
 /**
  *
- * @author krach
+ * @author khalid
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
+public class Metodos {
     
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
     private static final DetalleticketJpaController dc = new DetalleticketJpaController(emf);
@@ -38,22 +25,6 @@ public class Main {
     private static final TipoproductoJpaController tc = new TipoproductoJpaController(emf);
     private static final ProductosJpaController pc = new ProductosJpaController(emf);
     private static final TicketsJpaController kc = new TicketsJpaController(emf);
-    
-    public static void main(String[] args) {
-
-        //new VentanaPrincipal().setVisible(true);
-        
-//        Productos p2 = new Productos(0.10, 50, "gg", 50.00, "pizza", new Tipoproducto(1));
-//        pc.create(p2);
-       // Tipoproducto pizza = new Tipoproducto(1);
-       
-        //System.out.println(pc.findByCategoria("postre"));
-//        pc.findByCategoria("comida");
-
-       ProductoCreado("coca", "cocafresca", 0.35, 40, 19.30, "bebida", "Refresco");
-        
-    }
-    
     
     
     private static void crearProducto (Productos producto){
@@ -72,8 +43,6 @@ public class Main {
         Productos p1 = new Productos(iva, stock, descripcion, precio, nombre, t1);
         if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
             crearTipo(t1);
-        }else{
-        tc.findByNombretipoprodcucto(nombreTipo);
         }
         crearProducto(p1);
         }else if (categoria.equalsIgnoreCase("Bebida")) {
@@ -81,8 +50,6 @@ public class Main {
         Productos p1 =  new Productos(iva, stock, descripcion, precio, nombre, t1);
          if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
             crearTipo(t1);
-        }else{
-        tc.findByNombretipoprodcucto(nombreTipo);
         }
         crearProducto(p1);
         }else if (categoria.equalsIgnoreCase("Postre")) {
@@ -90,16 +57,19 @@ public class Main {
         Productos p1 =  new Productos(iva, stock, descripcion, precio, nombre, t1);
          if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
             crearTipo(t1);
-        }else{
-        tc.findByNombretipoprodcucto(nombreTipo);
         }
         crearProducto(p1);
         }else{
             JOptionPane.showMessageDialog(null, "Tienes que introducir una categoria válida");
         }
     }
-
-
+    
+    
+    
+    
+    
+    
+    
     
     
 }

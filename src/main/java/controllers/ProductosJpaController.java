@@ -229,4 +229,33 @@ public class ProductosJpaController implements Serializable {
         }
     }
     
+    
+    
+        
+    public Productos findByIdproductos(int idproductos){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Productos.findByIdproductos");
+        // Se establece el parámetro de la consulta
+        q.setParameter("idproductos", idproductos);
+        return (Productos) q.getSingleResult();
+    }
+    
+
+    
+    
+    public List<Productos> findByCategoria(String categoria) {
+        EntityManager em = getEntityManager();
+        
+            // Create the query using the named query
+            Query q = em.createNamedQuery("Productos.findByCategoria");
+            // Set the parameter of the query
+            q.setParameter("categoria", categoria);
+            // Return the result list cast to the appropriate type
+            return q.getResultList();       
+    }
+    
+    
+    
+    
 }

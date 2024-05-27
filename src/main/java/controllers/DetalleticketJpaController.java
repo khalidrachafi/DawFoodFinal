@@ -207,4 +207,34 @@ public class DetalleticketJpaController implements Serializable {
         }
     }
     
+    
+    public Detalleticket findAll(){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Detalleticket.findAll");
+
+        return (Detalleticket)q.getResultList();
+    }
+    
+    
+    public Detalleticket findByIdproductos(String idproductos){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Detalleticket.findByIdproductos");
+        // Se establece el parámetro de la consulta
+        q.setParameter("idproductos", idproductos);
+        return (Detalleticket)q.getResultList();
+    }
+    
+    
+    public Detalleticket findByIdtickets(String idtickets){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Detalleticket.findByIdtickets");
+        // Se establece el parámetro de la consulta
+        q.setParameter("idtickets", idtickets);
+        return (Detalleticket)q.getResultList();
+    }
+    
+    
 }

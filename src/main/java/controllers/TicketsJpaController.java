@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import models.Productos;
 import models.Tickets;
 
 /**
@@ -228,5 +229,16 @@ public class TicketsJpaController implements Serializable {
             em.close();
         }
     }
+    
+
+    
+    public Tickets findAll(){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Tickets.findAll");
+
+        return (Tickets)q.getResultList();
+    }
+    
     
 }

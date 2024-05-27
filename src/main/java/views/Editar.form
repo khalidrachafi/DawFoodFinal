@@ -46,21 +46,23 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="donacionestxt" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="rhtxt" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="grupotxt" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="fechatxt" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="nombretxt" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="donacionestxt1" min="-2" pref="71" max="-2" attributes="0"/>
+              <EmptySpace min="62" pref="62" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="fechatxt" alignment="0" pref="97" max="32767" attributes="0"/>
+                          <Component id="grupotxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="rhtxt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="donacionestxt1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="donacionestxt" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="idLab" min="-2" pref="87" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="idLab" min="-2" pref="87" max="-2" attributes="0"/>
+                  <Component id="nombretxt" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                      <EmptySpace pref="62" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnCancelar" max="32767" attributes="0"/>
                           <Component id="btnGuardar" max="32767" attributes="0"/>

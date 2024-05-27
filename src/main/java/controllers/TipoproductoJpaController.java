@@ -200,4 +200,34 @@ public class TipoproductoJpaController implements Serializable {
         }
     }
     
+    
+    public Tipoproducto findByCodtipoproducto(int codtipoproducto){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Tipoproducto.findByCodtipoproducto");
+        // Se establece el parámetro de la consulta
+        q.setParameter("codtipoproducto", codtipoproducto);
+        return (Tipoproducto) q.getSingleResult();
+    }
+    
+    
+    public Tipoproducto findByCategoria(String categoria){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Tipoproducto.findByCategoria");
+        // Se establece el parámetro de la consulta
+        q.setParameter("categoria", categoria);
+        return (Tipoproducto)q.getSingleResult();
+    }
+    
+    public Tipoproducto findByNombretipoprodcucto(String nombretipoprodcucto){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Tipoproducto.findByNombretipoprodcucto");
+        // Se establece el parámetro de la consulta
+        q.setParameter("nombretipoprodcucto", nombretipoprodcucto);
+        return (Tipoproducto) q.getSingleResult();
+    }
+    
+    
 }

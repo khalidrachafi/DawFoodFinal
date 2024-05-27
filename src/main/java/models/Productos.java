@@ -34,6 +34,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Productos.findByStock", query = "SELECT p FROM Productos p WHERE p.stock = :stock"),
     @NamedQuery(name = "Productos.findByDescripcion", query = "SELECT p FROM Productos p WHERE p.descripcion = :descripcion"),
     @NamedQuery(name = "Productos.findByPrecio", query = "SELECT p FROM Productos p WHERE p.precio = :precio"),
+    @NamedQuery(name = "Productos.findByCategoria", query = "SELECT p FROM Productos p JOIN p.codtipoproducto t WHERE t.categoria = :categoria"),
     @NamedQuery(name = "Productos.findByNomproducto", query = "SELECT p FROM Productos p WHERE p.nomproducto = :nomproducto")})
 public class Productos implements Serializable {
 
@@ -51,7 +52,7 @@ public class Productos implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
     @Column(name = "precio")
-    private BigDecimal precio;
+    private double precio;
     @Column(name = "nomproducto")
     private String nomproducto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
@@ -66,6 +67,18 @@ public class Productos implements Serializable {
     public Productos(Integer idproductos) {
         this.idproductos = idproductos;
     }
+
+    public Productos(Double iva, Integer stock, String descripcion, double precio, String nomproducto, Tipoproducto codtipoproducto) {
+        this.iva = iva;
+        this.stock = stock;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.nomproducto = nomproducto;
+        this.codtipoproducto = codtipoproducto;
+    }
+    
+    
+    
 
     public Integer getIdproductos() {
         return idproductos;
@@ -99,11 +112,11 @@ public class Productos implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigDecimal precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
@@ -153,7 +166,16 @@ public class Productos implements Serializable {
 
     @Override
     public String toString() {
-        return "models.Productos[ idproductos=" + idproductos + " ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Productos{");
+        sb.append("idproductos=").append(idproductos);
+        sb.append(", nomproducto=").append(nomproducto);
+        sb.append(", precio=").append(precio);
+        sb.append(", codtipoproducto=").append(codtipoproducto);
+        sb.append('}');
+        return sb.toString();
     }
+
+    
     
 }

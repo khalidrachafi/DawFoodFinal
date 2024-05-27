@@ -33,13 +33,13 @@ public class Borrar extends javax.swing.JDialog {
 
         Id = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        IdBorrarTxt = new javax.swing.JTextField();
         BorrarBtn = new javax.swing.JButton();
         CancelarBttn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        Id.setText("Nombre");
+        Id.setText("Id");
 
         jLabel4.setText("Producto a Borrar:");
 
@@ -65,7 +65,7 @@ public class Borrar extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(89, 89, 89)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(IdBorrarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(CancelarBttn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -80,7 +80,7 @@ public class Borrar extends javax.swing.JDialog {
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Id)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IdBorrarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BorrarBtn)
                 .addGap(26, 26, 26)
@@ -142,7 +142,7 @@ public class Borrar extends javax.swing.JDialog {
     private javax.swing.JButton BorrarBtn;
     private javax.swing.JButton CancelarBttn;
     private javax.swing.JLabel Id;
+    private javax.swing.JTextField IdBorrarTxt;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
