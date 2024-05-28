@@ -208,7 +208,7 @@ public class Añadir extends javax.swing.JDialog {
         }
      
      
-     public static int stringAInt(String texto) {
+     private static int stringAInt(String texto) {
         try {
             return Integer.valueOf(texto);
         } catch (NumberFormatException e) {
@@ -218,7 +218,7 @@ public class Añadir extends javax.swing.JDialog {
     }
 
     // Método para convertir un string a double
-    public static double stringADouble(String texto) {
+    private static double stringADouble(String texto) {
         try {
             return Double.valueOf(texto);
         } catch (NumberFormatException e) {

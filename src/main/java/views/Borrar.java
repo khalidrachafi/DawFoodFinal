@@ -4,6 +4,11 @@
  */
 package views;
 
+import controllers.exceptions.IllegalOrphanException;
+import controllers.exceptions.NonexistentEntityException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author khalid
@@ -44,6 +49,11 @@ public class Borrar extends javax.swing.JDialog {
         jLabel4.setText("Producto a Borrar:");
 
         BorrarBtn.setText("Borrar");
+        BorrarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarBtnActionPerformed(evt);
+            }
+        });
 
         CancelarBttn.setText("Cancelar");
         CancelarBttn.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +106,28 @@ public class Borrar extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_CancelarBttnActionPerformed
 
+    private void BorrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarBtnActionPerformed
+        try {
+            // TODO add your handling code here:
+            models.Metodos.EliminarProd(stringAInt(IdBorrarTxt.getText()));
+        } catch (IllegalOrphanException ex) {
+            Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_BorrarBtnActionPerformed
+
+    private static int stringAInt(String texto) {
+        try {
+            return Integer.valueOf(texto);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: No se puede convertir el string a int.");
+            return 0; // o cualquier valor por defecto que prefieras
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

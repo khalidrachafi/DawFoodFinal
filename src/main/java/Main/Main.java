@@ -9,6 +9,8 @@ import controllers.ProductosJpaController;
 import controllers.TicketsJpaController;
 import controllers.TipoproductoJpaController;
 import controllers.TpvJpaController;
+import controllers.exceptions.IllegalOrphanException;
+import controllers.exceptions.NonexistentEntityException;
 import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -39,7 +41,7 @@ public class Main {
     private static final ProductosJpaController pc = new ProductosJpaController(emf);
     private static final TicketsJpaController kc = new TicketsJpaController(emf);
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalOrphanException, NonexistentEntityException {
 
         new VentanaPrincipal().setVisible(true);
         
@@ -49,13 +51,13 @@ public class Main {
        
         //System.out.println(pc.findByCategoria("postre"));
 //        pc.findByCategoria("comida");
-
+        System.out.println(kc.findAll());
        
         
     }
     
 
-
-    
+  
+        
     
 }

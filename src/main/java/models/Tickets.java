@@ -49,7 +49,7 @@ public class Tickets implements Serializable {
     private int codtransaccion;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "preciofinal")
-    private BigDecimal preciofinal;
+    private double preciofinal;
     @Column(name = "fechahoraticket")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechahoraticket;
@@ -87,11 +87,11 @@ public class Tickets implements Serializable {
         this.codtransaccion = codtransaccion;
     }
 
-    public BigDecimal getPreciofinal() {
+    public double getPreciofinal() {
         return preciofinal;
     }
 
-    public void setPreciofinal(BigDecimal preciofinal) {
+    public void setPreciofinal(double preciofinal) {
         this.preciofinal = preciofinal;
     }
 
@@ -139,9 +139,38 @@ public class Tickets implements Serializable {
         return true;
     }
 
+//    @Override
+//    public String toString() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("Tickets{");
+//        sb.append("idtickets=").append(idtickets);
+//        sb.append("productos=").append(detalleticketCollection);
+//        sb.append(", preciofinal=").append(preciofinal);
+//        sb.append(", fechahoraticket=").append(fechahoraticket);
+//        sb.append(", codtpv=").append(codtpv);
+//        sb.append('}');
+//        return sb.toString();
+//    }
+
     @Override
     public String toString() {
-        return "models.Tickets[ idtickets=" + idtickets + " ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Tickets{");
+        sb.append("idtickets=").append(idtickets);
+        sb.append(", preciofinal=").append(preciofinal);
+        sb.append(", fechahoraticket=").append(fechahoraticket);
+        sb.append(", codtpv=").append(codtpv);
+        sb.append(", detalleticketCollection=").append(detalleticketCollection);
+        sb.append('}');
+        return sb.toString();
     }
+    
+    
+    
+
+    
+    
+    
+    
     
 }

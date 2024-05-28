@@ -9,6 +9,8 @@ import controllers.ProductosJpaController;
 import controllers.TicketsJpaController;
 import controllers.TipoproductoJpaController;
 import controllers.TpvJpaController;
+import controllers.exceptions.IllegalOrphanException;
+import controllers.exceptions.NonexistentEntityException;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
@@ -71,6 +73,12 @@ public class Metodos {
     }
     
     
+    
+    
+    
+    public static void EliminarProd(int idProducto) throws IllegalOrphanException, NonexistentEntityException{
+            pc.destroy(idProducto);
+        }
     
     
     

@@ -205,6 +205,29 @@ public class Editar extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    
+    private static int stringAInt(String texto) {
+        try {
+            return Integer.valueOf(texto);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: No se puede convertir el string a int.");
+            return 0; // o cualquier valor por defecto que prefieras
+        }
+    }
+
+    // Método para convertir un string a double
+    private static double stringADouble(String texto) {
+        try {
+            return Double.valueOf(texto);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: No se puede convertir el string a double.");
+            return 0.0; // o cualquier valor por defecto que prefieras
+        }
+    }
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
