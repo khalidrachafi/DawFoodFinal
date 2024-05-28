@@ -4,8 +4,16 @@
  */
 package views;
 
+import controllers.DetalleticketJpaController;
 import controllers.ProductosJpaController;
+import controllers.TicketsJpaController;
+import controllers.TipoproductoJpaController;
+import controllers.TpvJpaController;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 import models.Productos;
+import models.Tipoproducto;
 
 /**
  *
@@ -16,6 +24,7 @@ public class Añadir extends javax.swing.JDialog {
     /**
      * Creates new form Añadir
      */
+
     private GestionarMenu padre;
      
     public Añadir(GestionarMenu ventana, boolean modal) {
@@ -201,7 +210,7 @@ public class Añadir extends javax.swing.JDialog {
      
      public static int stringAInt(String texto) {
         try {
-            return Integer.parseInt(texto);
+            return Integer.valueOf(texto);
         } catch (NumberFormatException e) {
             System.out.println("Error: No se puede convertir el string a int.");
             return 0; // o cualquier valor por defecto que prefieras
@@ -211,12 +220,15 @@ public class Añadir extends javax.swing.JDialog {
     // Método para convertir un string a double
     public static double stringADouble(String texto) {
         try {
-            return Double.parseDouble(texto);
+            return Double.valueOf(texto);
         } catch (NumberFormatException e) {
             System.out.println("Error: No se puede convertir el string a double.");
             return 0.0; // o cualquier valor por defecto que prefieras
         }
     }
+    
+    
+
     
     /**
      * @param args the command line arguments

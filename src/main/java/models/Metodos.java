@@ -41,23 +41,29 @@ public class Metodos {
         if (categoria.equalsIgnoreCase("Comida")) {
           Tipoproducto t1 = new Tipoproducto(nombreTipo ,"Comida");  
         Productos p1 = new Productos(iva, stock, descripcion, precio, nombre, t1);
-        if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
+        //if (tc.findByNombretipoprodcucto(nombreTipo).equals(t1)) {
+            
+        //}else{
             crearTipo(t1);
-        }
+        //}
         crearProducto(p1);
         }else if (categoria.equalsIgnoreCase("Bebida")) {
           Tipoproducto t1 = new Tipoproducto(nombreTipo, "Bebida"); 
         Productos p1 =  new Productos(iva, stock, descripcion, precio, nombre, t1);
-         if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
+        // if (tc.findByNombretipoprodcucto(nombreTipo).equals(t1)) {
+            
+        //}else{
             crearTipo(t1);
-        }
+        //}
         crearProducto(p1);
         }else if (categoria.equalsIgnoreCase("Postre")) {
           Tipoproducto t1 = new Tipoproducto(nombreTipo, "Postre");  
         Productos p1 =  new Productos(iva, stock, descripcion, precio, nombre, t1);
-         if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
+         //if (tc.findByNombretipoprodcucto(nombreTipo).equals(t1)) {
+            
+        //}else{
             crearTipo(t1);
-        }
+        //}
         crearProducto(p1);
         }else{
             JOptionPane.showMessageDialog(null, "Tienes que introducir una categoria válida");

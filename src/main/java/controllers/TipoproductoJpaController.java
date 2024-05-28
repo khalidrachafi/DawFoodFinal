@@ -221,12 +221,17 @@ public class TipoproductoJpaController implements Serializable {
     }
     
     public Tipoproducto findByNombretipoprodcucto(String nombretipoprodcucto){
-        EntityManager em = getEntityManager();
+        try {
+            EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Tipoproducto.findByNombretipoprodcucto");
         // Se establece el parámetro de la consulta
         q.setParameter("nombretipoprodcucto", nombretipoprodcucto);
         return (Tipoproducto) q.getSingleResult();
+        } catch (NullPointerException e) {
+            System.out.println("No se ha encontrado ningun producto con ese nombre");
+            return null;
+        }      
     }
     
     

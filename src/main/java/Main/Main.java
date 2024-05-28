@@ -41,7 +41,7 @@ public class Main {
     
     public static void main(String[] args) {
 
-        //new VentanaPrincipal().setVisible(true);
+        new VentanaPrincipal().setVisible(true);
         
 //        Productos p2 = new Productos(0.10, 50, "gg", 50.00, "pizza", new Tipoproducto(1));
 //        pc.create(p2);
@@ -50,54 +50,10 @@ public class Main {
         //System.out.println(pc.findByCategoria("postre"));
 //        pc.findByCategoria("comida");
 
-       ProductoCreado("coca", "cocafresca", 0.35, 40, 19.30, "bebida", "Refresco");
+       
         
     }
     
-    
-    
-    private static void crearProducto (Productos producto){
-       pc.create(producto);
-    }
-    
-    private static void crearTipo (Tipoproducto tipoproducto){
-       tc.create(tipoproducto);
-    }
-    
-    public static void ProductoCreado (String nombre,String descripcion, double iva, int stock, double precio, String categoria, String nombreTipo){
-        
-        
-        if (categoria.equalsIgnoreCase("Comida")) {
-          Tipoproducto t1 = new Tipoproducto(nombreTipo ,"Comida");  
-        Productos p1 = new Productos(iva, stock, descripcion, precio, nombre, t1);
-        if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
-            crearTipo(t1);
-        }else{
-        tc.findByNombretipoprodcucto(nombreTipo);
-        }
-        crearProducto(p1);
-        }else if (categoria.equalsIgnoreCase("Bebida")) {
-          Tipoproducto t1 = new Tipoproducto(nombreTipo, "Bebida"); 
-        Productos p1 =  new Productos(iva, stock, descripcion, precio, nombre, t1);
-         if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
-            crearTipo(t1);
-        }else{
-        tc.findByNombretipoprodcucto(nombreTipo);
-        }
-        crearProducto(p1);
-        }else if (categoria.equalsIgnoreCase("Postre")) {
-          Tipoproducto t1 = new Tipoproducto(nombreTipo, "Postre");  
-        Productos p1 =  new Productos(iva, stock, descripcion, precio, nombre, t1);
-         if (tc.findByNombretipoprodcucto(nombreTipo) == null) {
-            crearTipo(t1);
-        }else{
-        tc.findByNombretipoprodcucto(nombreTipo);
-        }
-        crearProducto(p1);
-        }else{
-            JOptionPane.showMessageDialog(null, "Tienes que introducir una categoria válida");
-        }
-    }
 
 
     
