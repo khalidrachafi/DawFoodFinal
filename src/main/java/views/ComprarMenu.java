@@ -36,9 +36,7 @@ public class ComprarMenu extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        ComitaBtn = new javax.swing.JButton();
-        BebidaBtn = new javax.swing.JButton();
-        PostreBtn = new javax.swing.JButton();
+        MenuBtn = new javax.swing.JButton();
         VolverBtn = new javax.swing.JButton();
         CarritoBtn = new javax.swing.JButton();
 
@@ -46,24 +44,10 @@ public class ComprarMenu extends javax.swing.JDialog {
 
         jLabel1.setText("Elige la opción a la que deseas acceder:");
 
-        ComitaBtn.setText("Comida");
-        ComitaBtn.addActionListener(new java.awt.event.ActionListener() {
+        MenuBtn.setText("Menú");
+        MenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComitaBtnActionPerformed(evt);
-            }
-        });
-
-        BebidaBtn.setText("Bebida");
-        BebidaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BebidaBtnActionPerformed(evt);
-            }
-        });
-
-        PostreBtn.setText("Postre");
-        PostreBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PostreBtnActionPerformed(evt);
+                MenuBtnActionPerformed(evt);
             }
         });
 
@@ -86,37 +70,32 @@ public class ComprarMenu extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(VolverBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CarritoBtn)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ComitaBtn)
-                                .addGap(65, 65, 65)
-                                .addComponent(BebidaBtn)))
-                        .addGap(65, 65, 65)
-                        .addComponent(PostreBtn)))
-                .addContainerGap(54, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(VolverBtn)
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 126, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(MenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(CarritoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ComitaBtn)
-                    .addComponent(BebidaBtn)
-                    .addComponent(PostreBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(CarritoBtn)
-                .addGap(20, 20, 20)
+                    .addComponent(MenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CarritoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
                 .addComponent(VolverBtn)
                 .addContainerGap())
         );
@@ -129,20 +108,10 @@ public class ComprarMenu extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_VolverBtnActionPerformed
 
-    private void ComitaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComitaBtnActionPerformed
+    private void MenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBtnActionPerformed
         // TODO add your handling code here:
-        new Comida(this, true).setVisible(true);
-    }//GEN-LAST:event_ComitaBtnActionPerformed
-
-    private void BebidaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BebidaBtnActionPerformed
-        // TODO add your handling code here:
-        new Bebida(this, true).setVisible(true);
-    }//GEN-LAST:event_BebidaBtnActionPerformed
-
-    private void PostreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostreBtnActionPerformed
-        // TODO add your handling code here:
-        new Postre(this, true).setVisible(true);
-    }//GEN-LAST:event_PostreBtnActionPerformed
+        new Menu(this, true).setVisible(true);
+    }//GEN-LAST:event_MenuBtnActionPerformed
 
     private void CarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoBtnActionPerformed
         // TODO add your handling code here:
@@ -192,10 +161,8 @@ public class ComprarMenu extends javax.swing.JDialog {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BebidaBtn;
     private javax.swing.JButton CarritoBtn;
-    private javax.swing.JButton ComitaBtn;
-    private javax.swing.JButton PostreBtn;
+    private javax.swing.JButton MenuBtn;
     private javax.swing.JButton VolverBtn;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
