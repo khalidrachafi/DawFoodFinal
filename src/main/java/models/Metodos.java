@@ -11,6 +11,7 @@ import controllers.TipoproductoJpaController;
 import controllers.TpvJpaController;
 import controllers.exceptions.IllegalOrphanException;
 import controllers.exceptions.NonexistentEntityException;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
@@ -82,7 +83,11 @@ public class Metodos {
     
     
     
+    public static List<Productos> RecibirListaProd(String categoria) {
+         return pc.findByCategoria(categoria);
+        }
     
+
     
     
     

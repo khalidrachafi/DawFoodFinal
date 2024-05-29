@@ -51,7 +51,7 @@ public class Main {
        
         //System.out.println(pc.findByCategoria("postre"));
 //        pc.findByCategoria("comida");
-        System.out.println(kc.findAll());
+        System.out.println(pc.findByCategoria("Postre"));
        
         
     }
