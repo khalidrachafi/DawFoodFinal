@@ -115,7 +115,7 @@ public class ComprarMenu extends javax.swing.JDialog {
 
     private void CarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarritoBtnActionPerformed
         // TODO add your handling code here:
-        new Carrito(this, true).setVisible(true);
+        new CarritoInterfaz(this, true).setVisible(true);
     }//GEN-LAST:event_CarritoBtnActionPerformed
 
     /**

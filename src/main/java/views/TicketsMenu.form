@@ -40,16 +40,17 @@
                       <Component id="jLabel1" min="-2" pref="154" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="CancelarBuscarBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="314" max="32767" attributes="0"/>
-                  </Group>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jScrollPane2" min="-2" pref="360" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="mostrarrTodosBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="CancelarBuscarBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -68,12 +69,13 @@
               <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="205" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="CancelarBuscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BuscarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="mostrarrTodosBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
           </Group>
@@ -125,5 +127,10 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="mostrarrTodosBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar todos"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
