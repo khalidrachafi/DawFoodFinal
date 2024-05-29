@@ -112,7 +112,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void ComprarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarBtnActionPerformed
         // TODO add your handling code here:
-        new ComprarMenu(this, true).setVisible(true);
+        new Menu(this, true).setVisible(true);
     }//GEN-LAST:event_ComprarBtnActionPerformed
 
     private void SalirPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirPrincipalActionPerformed

@@ -21,7 +21,6 @@ import models.Detalleticket;
 import models.Productos;
 import models.Tickets;
 import models.Tipoproducto;
-import views.ComprarMenu;
 import views.VentanaPrincipal;
 
 /**

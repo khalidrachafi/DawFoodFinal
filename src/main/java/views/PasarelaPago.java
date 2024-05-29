@@ -26,11 +26,11 @@ public class PasarelaPago extends javax.swing.JDialog {
 //        super(parent, modal);
 //        initComponents();
 //    }
-    private CarritoInterfaz padre;
+    private Menu padre;
     private static List<Productos> carrito = new ArrayList<>();
     private static List<AtributosTarjeta> listaDeTarjetas = new ArrayList<>();
      
-    public PasarelaPago(CarritoInterfaz ventana, boolean modal) {
+    public PasarelaPago(Menu ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
         initComponents();

@@ -5,6 +5,7 @@
 package views;
 
 import java.awt.Component;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
@@ -20,10 +21,11 @@ public class Menu extends javax.swing.JDialog {
     /**
      * Creates new form Menu
      */
-    private ComprarMenu padre;
+    private VentanaPrincipal padre;
     private DefaultListModel<Productos> modeloCarrito;
+
      
-    public Menu(ComprarMenu ventana, boolean modal) {
+    public Menu(VentanaPrincipal ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
         initComponents();
@@ -35,6 +37,7 @@ public class Menu extends javax.swing.JDialog {
         
         // Inicializar la lista con las comidas
          actualizarLista("Comida");
+         
     }
         
     
@@ -70,7 +73,7 @@ public class Menu extends javax.swing.JDialog {
     
     
     
-    
+
     
     
     /**
@@ -97,6 +100,7 @@ public class Menu extends javax.swing.JDialog {
         ListaCarrito = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         LimpiarBtn = new javax.swing.JButton();
+        Comprar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -164,6 +168,13 @@ public class Menu extends javax.swing.JDialog {
             }
         });
 
+        Comprar.setText("Comprar");
+        Comprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,11 +204,16 @@ public class Menu extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ActCarritoBtn)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LimpiarBtn))
-                .addGap(245, 245, 245))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(LimpiarBtn)
+                        .addGap(218, 218, 218)
+                        .addComponent(Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,19 +236,19 @@ public class Menu extends javax.swing.JDialog {
                         .addGap(42, 42, 42)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CantidadCTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CantidadCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AñadirProducto)
-                            .addComponent(jButton2)
-                            .addComponent(ActCarritoBtn)
-                            .addComponent(LimpiarBtn))
-                        .addGap(27, 27, 27))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CantidadCTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CantidadCBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AñadirProducto)
+                    .addComponent(jButton2)
+                    .addComponent(ActCarritoBtn)
+                    .addComponent(LimpiarBtn)
+                    .addComponent(Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -267,12 +283,14 @@ public class Menu extends javax.swing.JDialog {
 
     private void AñadirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirProductoActionPerformed
         // TODO add your handling code here:
+        
         // Obtener el producto seleccionado
         Productos productoSeleccionado = ListaMuestra.getSelectedValue();
         // Agregar el producto al carrito
         if (productoSeleccionado != null) {
             modeloCarrito.addElement(productoSeleccionado);
-        }
+        }    
+
     }//GEN-LAST:event_AñadirProductoActionPerformed
 
     private void ActCarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActCarritoBtnActionPerformed
@@ -284,6 +302,11 @@ public class Menu extends javax.swing.JDialog {
         // TODO add your handling code here:
         modeloCarrito.clear();
     }//GEN-LAST:event_LimpiarBtnActionPerformed
+
+    private void ComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarActionPerformed
+        // TODO add your handling code here:
+         new PasarelaPago(this, true).setVisible(true);
+    }//GEN-LAST:event_ComprarActionPerformed
     
 
         
@@ -339,6 +362,7 @@ public class Menu extends javax.swing.JDialog {
     private javax.swing.JLabel CantidadCBtn;
     private javax.swing.JTextField CantidadCTxt;
     private javax.swing.JButton Comidas;
+    private javax.swing.JButton Comprar;
     private javax.swing.JButton LimpiarBtn;
     public javax.swing.JList<Productos> ListaCarrito;
     public javax.swing.JList<Productos> ListaMuestra;
