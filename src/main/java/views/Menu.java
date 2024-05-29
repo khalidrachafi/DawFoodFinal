@@ -26,9 +26,9 @@ public class Menu extends javax.swing.JDialog {
         super(ventana, modal);
         padre = ventana;
         initComponents();
-        this.setTitle("Comidas");
+        this.setTitle("Menu de Productos");
          
-        // Inicializar la lista de productos después de initComponents()
+        // Inicializar la lista con las comidas
          actualizarLista("Comida");
     }
         

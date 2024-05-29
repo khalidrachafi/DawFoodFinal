@@ -88,7 +88,11 @@ public class Metodos {
         }
     
 
+    public static void EditarProd(Productos producto) throws NonexistentEntityException, Exception{
+        pc.edit(producto);
+    }
     
-    
-    
+    public static Productos EnconPorId(int Idproducto) {
+      return  pc.findByIdproductos(Idproducto);
+    }
 }
