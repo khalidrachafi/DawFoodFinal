@@ -95,4 +95,13 @@ public class Metodos {
     public static Productos EnconPorId(int Idproducto) {
       return  pc.findByIdproductos(Idproducto);
     }
+    
+    public static List<Tickets> RecibirListaTick() {
+         return kc.findAll();
+        }
+    
+    public static List<Detalleticket> RecibirListaDetalle(int idTicket) {
+         return dc.findByIdtickets(idTicket);
+        }
+    
 }

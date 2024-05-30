@@ -4,6 +4,12 @@
  */
 package views;
 
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import models.Detalleticket;
+import models.Tickets;
+
 /**
  *
  * @author khalid
@@ -24,8 +30,31 @@ public class TicketsMenu extends javax.swing.JDialog {
         padre = ventana;
         initComponents();
         this.setTitle("Menu de consulta de tickets");
+        cargarTickets();
     }
-
+    
+    
+      private void cargarTickets() {
+        List<Tickets> tickets = models.Metodos.RecibirListaTick(); 
+        DefaultListModel<Tickets> model = new DefaultListModel<>();
+        for (Tickets ticket : tickets) {
+            model.addElement(ticket);
+        }
+        ListaTickets.setModel(model);
+    }
+    
+      
+      private void mostrarDetalles(List<Detalleticket> detalles) {
+        // Aquí puedes implementar la lógica para mostrar los detalles
+        // Por ejemplo, podrías abrir un nuevo JDialog que muestre la información de detalle
+        String detallesStr = "";
+        for (Detalleticket detalle : detalles) {
+            detallesStr += detalle.toString() + "\n";
+        }
+        JOptionPane.showMessageDialog(this, detallesStr, "Detalles del Ticket", JOptionPane.INFORMATION_MESSAGE);
+    }
+      
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,21 +65,22 @@ public class TicketsMenu extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         BuscarBtn = new javax.swing.JButton();
         CancelarBuscarBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListaTickets = new javax.swing.JList<>();
-        mostrarrTodosBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Consultar Tickets");
 
-        jLabel2.setText("Id");
-
         BuscarBtn.setText("Buscar");
+        BuscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarBtnActionPerformed(evt);
+            }
+        });
 
         CancelarBuscarBtn.setText("Cancelar");
         CancelarBuscarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -61,55 +91,47 @@ public class TicketsMenu extends javax.swing.JDialog {
 
         jScrollPane2.setViewportView(ListaTickets);
 
-        mostrarrTodosBtn.setText("Mostrar todos");
+        jLabel3.setText("Selecciona un ticket y pulsa buscar para verlo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(BuscarBtn))
+                        .addComponent(jScrollPane2)
+                        .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(mostrarrTodosBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CancelarBuscarBtn)
-                        .addGap(45, 45, 45))))
+                        .addComponent(BuscarBtn)
+                        .addGap(28, 28, 28)
+                        .addComponent(CancelarBuscarBtn))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(281, 281, 281))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CancelarBuscarBtn)
-                    .addComponent(BuscarBtn)
-                    .addComponent(mostrarrTodosBtn))
-                .addGap(32, 32, 32))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(38, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CancelarBuscarBtn)
+                            .addComponent(BuscarBtn))
+                        .addGap(15, 15, 15))))
         );
 
         pack();
@@ -119,6 +141,19 @@ public class TicketsMenu extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_CancelarBuscarBtnActionPerformed
+
+    private void BuscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = ListaTickets.getSelectedIndex();
+        if (selectedIndex != -1) {
+            Tickets selectedTicket =  models.Metodos.RecibirListaTick().get(selectedIndex);  
+            int ticketId = selectedTicket.getIdtickets();
+            List<Detalleticket> detalles = models.Metodos.RecibirListaDetalle(ticketId);
+            mostrarDetalles(detalles);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un ticket primero.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BuscarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,11 +201,9 @@ public class TicketsMenu extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarBtn;
     private javax.swing.JButton CancelarBuscarBtn;
-    private javax.swing.JList<String> ListaTickets;
+    private javax.swing.JList<Tickets> ListaTickets;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton mostrarrTodosBtn;
     // End of variables declaration//GEN-END:variables
 }

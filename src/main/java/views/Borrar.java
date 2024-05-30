@@ -8,6 +8,7 @@ import controllers.exceptions.IllegalOrphanException;
 import controllers.exceptions.NonexistentEntityException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -109,6 +110,10 @@ public class Borrar extends javax.swing.JDialog {
     private void BorrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarBtnActionPerformed
         try {
             // TODO add your handling code here:
+            //si existe un producto en un ticket no lo hace y muestra un mensaje de error
+             if (rootPaneCheckingEnabled) {
+                 JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
+             }
             models.Metodos.EliminarProd(stringAInt(IdBorrarTxt.getText()));
         } catch (IllegalOrphanException ex) {
             Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);

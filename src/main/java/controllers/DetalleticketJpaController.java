@@ -227,13 +227,13 @@ public class DetalleticketJpaController implements Serializable {
     }
     
     
-    public Detalleticket findByIdtickets(String idtickets){
+    public List<Detalleticket> findByIdtickets(int idtickets){
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Detalleticket.findByIdtickets");
         // Se establece el parámetro de la consulta
         q.setParameter("idtickets", idtickets);
-        return (Detalleticket)q.getResultList();
+        return q.getResultList();
     }
     
     
