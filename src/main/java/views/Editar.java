@@ -37,7 +37,7 @@ public class Editar extends javax.swing.JDialog {
     
     private void editarProducto(int id, String nuevoNombre, String nuevaDescripcion, double nuevoIva,double nuevoPrecio) throws NonexistentEntityException, Exception {
     // Obtener el Producto existente por su ID
-    Productos producto = models.Metodos.EnconPorId(id);
+    Productos producto = models.Metodos.EnconProductosPorId(id);
     
     // Verificar si el Producto existe
     if (producto == null) {

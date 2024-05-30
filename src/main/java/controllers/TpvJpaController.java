@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import models.Productos;
 import models.Tpv;
 
 /**
@@ -198,6 +199,17 @@ public class TpvJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+    
+    
+    
+    public Tpv findByIdproductos(int codtpv){
+        EntityManager em = getEntityManager();
+        // Se crea la query usando el nombre de la named query
+        Query q = em.createNamedQuery("Tpv.findByCodtpv");
+        // Se establece el parámetro de la consulta
+        q.setParameter("codtpv", codtpv);
+        return (Tpv) q.getSingleResult();
     }
     
 }

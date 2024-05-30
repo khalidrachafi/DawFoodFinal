@@ -19,13 +19,7 @@ import models.Productos;
  */
 public class PasarelaPago extends javax.swing.JDialog {
 
-    /**
-     * Creates new form PasarelaPago
-     */
-//    public PasarelaPago(java.awt.Frame parent, boolean modal) {
-//        super(parent, modal);
-//        initComponents();
-//    }
+
     private Menu padre;
     private static List<Productos> carrito = new ArrayList<>();
     private static List<AtributosTarjeta> listaDeTarjetas = new ArrayList<>();
@@ -44,187 +38,9 @@ public class PasarelaPago extends javax.swing.JDialog {
     }
     
     
-    /*--------------
-    */
-    
 
-    // Método para agregar productos seleccionados al carrito.
-    
-//    public static void agregarProductoAlCarrito(Productos producto) {
-//        // Verificar si el producto está en stock
-//        if (producto.getStock() == 0) {
-//            JOptionPane.showMessageDialog(null, "El producto '" + producto.getNomproducto() + "' no está disponible en stock.", "Producto no disponible", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//
-//        // Pedir al usuario que ingrese la cantidad utilizando JOptionPane
-//        String cantidada = JOptionPane.showInputDialog("Ingrese la cantidad de '" + producto.getNombre() + "' que desea agregar al carrito:");
-//
-//        try {
-//            // Convertir la cantidad ingresada a un número entero
-//            int cantidad = Integer.parseInt(cantidada);
-//
-//            if (cantidad > 0) {
-//                for (int i = 0; i < cantidad; i++) {
-//                    // Agregar el producto al carrito la cantidad especificada de veces
-//                    carrito.add(producto);
-//                }
-//
-//                JOptionPane.showMessageDialog(null, cantidad + " x '" + producto.getNombre() + "' ha sido agregado al carrito.");
-//            } else {
-//                JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor que 0. No se ha agregado nada al carrito.", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido para la cantidad.", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
+   
 
-
-
-    // Método para limpiar el carrito.
-    public static void noComprar() {
-        carrito.clear();
-    }
-
-    // Método para realizar el proceso de pago
-    public static void procesarPago() {
-        // Calcular el precio total con IVA
-        // lo he puesto a 5 para que no salte error
-        double precioTotal = 5; // calcularPrecioTotalConIVA();
-
-        // Verificar si hay productos en el carrito.
-        if (precioTotal != 0) {
-            boolean tarjetaValida = false;
-            int intentos = 0;
-
-            // Permitir hasta 2 intentos de pago.
-            while (!tarjetaValida && intentos < 2) {
-                try {
-                    // Solicitar al usuario el número de tarjeta.
-                    String stringNumTarj = JOptionPane.showInputDialog("Ingrese el número de su tarjeta:");
-
-                    // Verificar si la entrada es un número.
-                    if (!esNumero(stringNumTarj)) {
-                        JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido para el número de tarjeta.", "Error", JOptionPane.ERROR_MESSAGE);
-                        intentos++;
-                    } else {
-                        int numeroTarjeta = Integer.parseInt(stringNumTarj);
-
-                        // Verificar si la tarjeta con ese número existe.
-                        AtributosTarjeta tarjeta = obtenerTarjetaPorNumero(numeroTarjeta);
-
-                        if (tarjeta != null) {
-
-                            LocalDate fechaCaducidad = null;
-
-                            // Si la tarjeta existe, solicitar la fecha de caducidad y el CVV.
-                            try {
-                                String fechaCaducidadA = JOptionPane.showInputDialog("Ingrese la fecha de caducidad (YYYY/MM/DD):");
-                                fechaCaducidad = LocalDate.parse(fechaCaducidadA, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
-                            } catch (DateTimeParseException e) {
-                                // Capturar excepción DateTimeParseException e imprimir en la terminal.
-                                // System.out.println("Excepción DateTimeParseException: " + e.getMessage());
-                            }
-
-                            String cvv = JOptionPane.showInputDialog("Ingrese el CVV:");
-
-                            // Verificar que la fecha de caducidad y el CVV no sean nulos o vacíos.
-                            if (fechaCaducidad != null && cvv != null && !cvv.isEmpty()) {
-                                // Verificar la fecha de caducidad y el CVV.
-                                if (verificarFechaYCVV(tarjeta, fechaCaducidad, cvv)) {
-                                    // Calcular el precio total con IVA.
-                                    double precioTotalConIVA = 5; //calcularPrecioTotalConIVA();
-
-                                    // Verificar si hay suficiente saldo para la compra.
-                                    if (tarjeta.getSaldo() >= precioTotalConIVA) {
-                                        // Realizar la compra descontando el saldo.
-                                        tarjeta.setSaldo(tarjeta.getSaldo() - precioTotalConIVA);
-
-                                        // Mostrar mensaje de compra realizada.
-                                        JOptionPane.showMessageDialog(null, "Compra realizada. Gracias por su compra!");
-
-                                        // Llamar al método ticket.
-                                        //ticket();
-
-                                        // Limpiar el carrito después de la compra.
-                                        carrito.clear();
-
-                                        // Salir del bucle.
-                                        tarjetaValida = true;
-
-                                    } else {
-                                        // Mostrar mensaje de saldo insuficiente.
-                                        JOptionPane.showMessageDialog(null, "Saldo insuficiente. Ingrese otra tarjeta.");
-                                        intentos++;
-                                    }
-                                } else {
-                                    // Mostrar mensaje de fecha de caducidad o CVV incorrecto.
-                                    JOptionPane.showMessageDialog(null, "Fecha de caducidad o CVV incorrecto. Ingrese otra tarjeta.");
-                                    intentos++;
-                                }
-                            } else {
-                                // Mostrar mensaje de fecha de caducidad o CVV nulo o vacío.
-                                JOptionPane.showMessageDialog(null, "Fecha de caducidad o CVV incorrecto. Ingrese otra tarjeta.");
-                                intentos++;
-                            }
-
-                        } else {
-                            // Mostrar mensaje de tarjeta no encontrada.
-                            JOptionPane.showMessageDialog(null, "Tarjeta no encontrada. Ingrese otra tarjeta.");
-                            intentos++;
-                        }
-                    }
-                } catch (NumberFormatException e) {
-                    // Mostrar mensaje de entrada no válida.
-                    JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                    intentos++;
-                }
-            }
-
-        } else {
-            // Mostrar mensaje de carrito vacío.
-            JOptionPane.showMessageDialog(null, "El carrito está vacío. No se puede realizar la compra.");
-
-            // Limpiar el carrito después de la compra.
-            carrito.clear();
-        }
-    }
-
-    // Método para verificar si una cadena es un número
-    private static boolean esNumero(String cadena) {
-        try {
-            Integer.parseInt(cadena); // Intenta convertir la cadena a un entero.
-            return true; // Si funciona, devuelve true.
-        } catch (NumberFormatException e) {
-            return false;  // Si hay una excepción, devuelve false.
-        }
-    }
-
-    // Método para buscar una tarjeta por su número en la lista de tarjetas
-    public static AtributosTarjeta obtenerTarjetaPorNumero(int numeroTarjeta) {
-        for (AtributosTarjeta tarjeta : listaDeTarjetas) {
-            if (tarjeta.getNumeroTarjeta() == numeroTarjeta) {
-                return tarjeta; // Devuelve la tarjeta si encuentra el número proporcionado.
-            }
-        }
-        return null; // Retorna null si no se encuentra la tarjeta con el número proporcionado.
-    }
-
-    // Método para verificar la fecha de caducidad y el CVV de una tarjeta
-    private static boolean verificarFechaYCVV(AtributosTarjeta tarjeta, LocalDate fechaCaducidad, String cvv) {
-
-        // Verificar la fecha de caducidad
-        if (tarjeta.getFechaVencimiento().equals(fechaCaducidad)) {
-            // Verificar el CVV
-            return tarjeta.getCvv() == Integer.parseInt(cvv);
-        }
-
-        return false; // Devuelve false si la fecha de caducidad no coincide o el CVV no coincide.
-    }
-    
-    
-    /*--------------
-    */
     
 
     /**
@@ -251,6 +67,11 @@ public class PasarelaPago extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         ComprobarBtn.setText("Comprobar");
+        ComprobarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprobarBtnActionPerformed(evt);
+            }
+        });
 
         NumTarjLb.setText("Numero Tarjeta");
 
@@ -330,6 +151,72 @@ public class PasarelaPago extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ComprobarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarBtnActionPerformed
+        // TODO add your handling code here:
+         // Obtener los valores introducidos por el usuario
+    String numTarjetaStr = NumTarjTxt.getText().trim();
+    String mesStr = mesTxt.getText().trim();
+    String anoStr = AñoTxt.getText().trim();
+    String cvvStr = CvvTxt.getText().trim();
+
+    // Verificar si algún campo está vacío
+    if (numTarjetaStr.isEmpty() || mesStr.isEmpty() || anoStr.isEmpty() || cvvStr.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Convertir los valores de mes y año a enteros
+    int mes;
+    int ano;
+    try {
+        mes = Integer.parseInt(mesStr);
+        ano = Integer.parseInt(anoStr);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El mes y el año deben ser números enteros.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Verificar si la fecha de caducidad es válida
+    if (mes < 1 || mes > 12 || ano < LocalDate.now().getYear() || (ano == LocalDate.now().getYear() && mes < LocalDate.now().getMonthValue())) {
+        JOptionPane.showMessageDialog(this, "La fecha de caducidad no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Verificar si la longitud del número de tarjeta es válida
+    if (numTarjetaStr.length() != 16) {
+        JOptionPane.showMessageDialog(this, "El número de tarjeta debe tener 16 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Verificar si el CVV es válido
+    if (cvvStr.length() != 3) {
+        JOptionPane.showMessageDialog(this, "El CVV debe tener 3 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Verificar si la tarjeta existe en la lista de tarjetas y coincide con los datos introducidos
+    boolean tarjetaEncontrada = false;
+    for (AtributosTarjeta tarjeta : listaDeTarjetas) {
+        if (tarjeta.getNumeroTarjeta() == Integer.parseInt(numTarjetaStr) &&
+            tarjeta.getFechaVencimiento().getMonthValue() == mes &&
+            tarjeta.getFechaVencimiento().getYear() == ano &&
+            tarjeta.getCvv() == Integer.parseInt(cvvStr)) {
+            tarjetaEncontrada = true;
+            break;
+        }
+    }
+
+    // Si la tarjeta no se encontró, mostrar un mensaje de error
+    if (!tarjetaEncontrada) {
+        JOptionPane.showMessageDialog(this, "La tarjeta no existe o los datos no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Si pasa todas las validaciones, mostrar un mensaje de éxito
+    JOptionPane.showMessageDialog(this, "¡Pago exitoso!", "Pago", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_ComprobarBtnActionPerformed
 
     /**
      * @param args the command line arguments

@@ -48,15 +48,15 @@ public class Main {
 //        pc.create(p2);
        // Tipoproducto pizza = new Tipoproducto(1);
        
-        System.out.println(pc.findByCategoria("postre"));
-//        pc.findByCategoria("comida");
-    //    System.out.println(pc.findByCategoria("Postre"));
-        if (dc.findByIdproductos(6).isEmpty() || dc.findByIdproductos(6) == null) {
-            System.out.println("Hola bb");
-        }else{
-            System.out.println("no funciona");
-        }
-        System.out.println(  dc.findByIdproductos(1));
+//        System.out.println(pc.findByCategoria("postre"));
+////        pc.findByCategoria("comida");
+//    //    System.out.println(pc.findByCategoria("Postre"));
+//        if (dc.findByIdproductos(6).isEmpty() || dc.findByIdproductos(6) == null) {
+//            System.out.println("Hola bb");
+//        }else{
+//            System.out.println("no funciona");
+//        }
+//        System.out.println(  dc.findByIdproductos(1));
     }
     
 

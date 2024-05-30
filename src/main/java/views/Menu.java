@@ -11,6 +11,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import models.FuncionesCarrito;
 import models.Productos;
 
 /**
@@ -24,7 +25,7 @@ public class Menu extends javax.swing.JDialog {
      */
     private VentanaPrincipal padre;
     private DefaultListModel<Productos> modeloCarrito;
-
+    private FuncionesCarrito funcionesCarrito; // Instancia de FuncionesCarrito
      
     public Menu(VentanaPrincipal ventana, boolean modal) {
         super(ventana, modal);
@@ -39,10 +40,9 @@ public class Menu extends javax.swing.JDialog {
         // Inicializar la lista con las comidas
          actualizarLista("Comida");
          
+         // Inicializar instancia de FuncionesCarrito
+        funcionesCarrito = new FuncionesCarrito(ListaCarrito);
     }
-        
-    
-    
     
     
     private void actualizarLista(String categoria) {
@@ -308,7 +308,10 @@ public class Menu extends javax.swing.JDialog {
         if (modeloCarrito.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se puede comprar, porque no hay nada en el carrito");
         }else{
-         new PasarelaPago(this, true).setVisible(true);
+         //new PasarelaPago(this, true).setVisible(true);
+         funcionesCarrito.comprar(); // Llama al método comprar
+            JOptionPane.showMessageDialog(null, "Compra realizada con éxito.");
+            modeloCarrito.clear(); // Limpiar el modelo del carrito después de la compra
         }
     }//GEN-LAST:event_ComprarActionPerformed
     

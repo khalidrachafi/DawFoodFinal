@@ -92,8 +92,12 @@ public class Metodos {
         pc.edit(producto);
     }
     
-    public static Productos EnconPorId(int Idproducto) {
+    public static Productos EnconProductosPorId(int Idproducto) {
       return  pc.findByIdproductos(Idproducto);
+    }
+    
+    public static Tpv EnconTpvPorId(int codtpv) {
+      return  vc.findByIdproductos(codtpv);
     }
     
     public static List<Tickets> RecibirListaTick() {
