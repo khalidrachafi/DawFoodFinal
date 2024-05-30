@@ -4,9 +4,13 @@
  */
 package views;
 
+import controllers.DetalleticketJpaController;
+import controllers.exceptions.IllegalOrphanException;
 import controllers.exceptions.NonexistentEntityException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 import models.Productos;
 
@@ -20,6 +24,8 @@ public class Editar extends javax.swing.JDialog {
      * Creates new form Editar
      */
      private GestionarMenu padre;
+     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
+     private static final DetalleticketJpaController dc = new DetalleticketJpaController(emf);
      
     public Editar(GestionarMenu ventana, boolean modal) {
         super(ventana, modal);
@@ -201,17 +207,23 @@ public class Editar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-         try {
-             // TODO add your handling code here:
+       // TODO add your handling code here:   
+        if (dc.findByIdproductos(stringAInt(idtxt.getText())).isEmpty() || dc.findByIdproductos(stringAInt(idtxt.getText())) == null) {       
+           try {       
              //si existe un producto en un ticket no lo hace y muestra un mensaje de error
-             if (rootPaneCheckingEnabled) {
-                 JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
-             }
              editarProducto(stringAInt(idtxt.getText()), nombretxt.getText(),descTxt.getText() , stringADouble(ivaTxt.getText()),stringADouble(precioTxt.getText()));
-             this.dispose();
-         } catch (Exception ex) {
-             Logger.getLogger(Editar.class.getName()).log(Level.SEVERE, null, ex);
-         }
+                        this.dispose();
+                } catch (Exception ex) {
+                    Logger.getLogger(Editar.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           
+        }else{
+            JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

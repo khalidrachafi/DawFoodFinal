@@ -45,7 +45,7 @@ public class TicketsMenu extends javax.swing.JDialog {
     
       
       private void mostrarDetalles(List<Detalleticket> detalles) {
-        // Aquí puedes implementar la lógica para mostrar los detalles
+
         // Por ejemplo, podrías abrir un nuevo JDialog que muestre la información de detalle
         String detallesStr = "";
         for (Detalleticket detalle : detalles) {

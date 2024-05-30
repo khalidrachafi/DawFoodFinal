@@ -4,10 +4,13 @@
  */
 package views;
 
+import controllers.DetalleticketJpaController;
 import controllers.exceptions.IllegalOrphanException;
 import controllers.exceptions.NonexistentEntityException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +22,8 @@ public class Borrar extends javax.swing.JDialog {
     /**
      * Creates new form Borrar
      */
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
+    private static final DetalleticketJpaController dc = new DetalleticketJpaController(emf);
     private GestionarMenu padre;
      
     public Borrar(GestionarMenu ventana, boolean modal) {
@@ -108,18 +113,22 @@ public class Borrar extends javax.swing.JDialog {
     }//GEN-LAST:event_CancelarBttnActionPerformed
 
     private void BorrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarBtnActionPerformed
-        try {
+        
             // TODO add your handling code here:
             //si existe un producto en un ticket no lo hace y muestra un mensaje de error
-             if (rootPaneCheckingEnabled) {
-                 JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
-             }
-            models.Metodos.EliminarProd(stringAInt(IdBorrarTxt.getText()));
-        } catch (IllegalOrphanException ex) {
-            Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
+            if (dc.findByIdproductos(stringAInt(IdBorrarTxt.getText())).isEmpty() || dc.findByIdproductos(stringAInt(IdBorrarTxt.getText())) == null) {
+              try {
+                  models.Metodos.EliminarProd(stringAInt(IdBorrarTxt.getText()));
+                    } catch (IllegalOrphanException ex) {
+                   Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NonexistentEntityException ex) {
+                Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
+                    }             
+        }else{
+            JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
         }
+
+            
         
     }//GEN-LAST:event_BorrarBtnActionPerformed
 
