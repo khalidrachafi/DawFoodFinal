@@ -257,5 +257,17 @@ public class ProductosJpaController implements Serializable {
     
     
     
+    public List<Productos> findAll() {
+        EntityManager em = getEntityManager();
+        
+            // Create the query using the named query
+            Query q = em.createNamedQuery("Productos.findAll");
+
+            // Return the result list cast to the appropriate type
+            return q.getResultList();       
+    }
+    
+    
+    
     
 }

@@ -213,7 +213,7 @@ public class PasarelaPago extends javax.swing.JDialog {
         return;
     }
 
-    // Si pasa todas las validaciones, mostrar un mensaje de éxito
+    // Si no falla en ninguno, mostrar un mensaje de éxito
     JOptionPane.showMessageDialog(this, "¡Pago exitoso!", "Pago", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_ComprobarBtnActionPerformed

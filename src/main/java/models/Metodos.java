@@ -108,4 +108,9 @@ public class Metodos {
          return dc.findByIdtickets(idTicket);
         }
     
+    public static List<Productos> TodaListaProductos() {
+         return pc.findAll();
+        }
+    
+    
 }
