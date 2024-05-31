@@ -104,7 +104,7 @@ public class Detalleticket implements Serializable {
 
     @Override
     public String toString() {
-        return "Ticket= " + tickets.getIdtickets() + ", Producto " + productos.getIdproductos() + ", " + productos.getNomproducto() + ", " + productos.getPrecio() + ", cantidad " + cantidad + ", " + tickets.getFechahoraticket() + "";
+        return  productos.getNomproducto() + ", precio= " + productos.getPrecio() + "€, cantidad= " + cantidad;
     }
     
 }

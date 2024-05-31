@@ -44,14 +44,21 @@ public class TicketsMenu extends javax.swing.JDialog {
     }
     
       
-      private void mostrarDetalles(List<Detalleticket> detalles) {
+      private void mostrarDetalles(List<Detalleticket> detalles, Tickets ticket) {
 
-        // Por ejemplo, podrías abrir un nuevo JDialog que muestre la información de detalle
+          String fecha = ticket.getFechahoraticket().toString();
+          double precioTotal = ticket.getPreciofinal();
+          String precioFinal = String.valueOf(precioTotal);
+          
+          String cabeceraDetalle = "FechaHora= " + fecha +"\n\n";
+          String pieDetalle = "PrecioTotal= " + precioFinal;
+          
+         // bucle para mostrar el to string de cada producto en un joption 
         String detallesStr = "";
         for (Detalleticket detalle : detalles) {
             detallesStr += detalle.toString() + "\n";
         }
-        JOptionPane.showMessageDialog(this, detallesStr, "Detalles del Ticket", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, cabeceraDetalle + detallesStr + "\n" + pieDetalle, "Detalles del Ticket", JOptionPane.INFORMATION_MESSAGE);
     }
       
       
@@ -149,7 +156,7 @@ public class TicketsMenu extends javax.swing.JDialog {
             Tickets selectedTicket =  models.Metodos.RecibirListaTick().get(selectedIndex);  
             int ticketId = selectedTicket.getIdtickets();
             List<Detalleticket> detalles = models.Metodos.RecibirListaDetalle(ticketId);
-            mostrarDetalles(detalles);
+            mostrarDetalles(detalles,selectedTicket);
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona un ticket primero.", "Error", JOptionPane.ERROR_MESSAGE);
         }
