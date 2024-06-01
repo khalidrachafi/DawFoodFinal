@@ -7,6 +7,7 @@ package views;
 import java.awt.Component;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -24,12 +25,15 @@ public class Menu extends javax.swing.JDialog {
      * Creates new form Menu
      */
     private VentanaPrincipal padre;
-    private DefaultListModel<Productos> modeloCarrito;
+    //private DefaultListModel<Productos> modeloCarrito;
+    private Map<Productos, Integer> carrito;
+    private DefaultListModel<String> modeloCarrito;
      
     public Menu(VentanaPrincipal ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
         initComponents();
+        carrito = new HashMap<>();
         this.setTitle("Menu de Productos");
          configurarRenderizadorListaCarrito(); 
          
@@ -39,6 +43,10 @@ public class Menu extends javax.swing.JDialog {
         // Inicializar la lista con las comidas
          actualizarLista("Comida");
          
+    }
+
+    public Map<Productos, Integer> getCarrito() {
+        return carrito;
     }
     
     
@@ -71,6 +79,15 @@ public class Menu extends javax.swing.JDialog {
     
     
     
+    
+    private void actualizarCarrito() {
+        modeloCarrito.clear();
+        for (Map.Entry<Productos, Integer> entry : carrito.entrySet()) {
+            Productos producto = entry.getKey();
+            int cantidad = entry.getValue();
+            modeloCarrito.addElement(producto.getNomproducto() + " x" + cantidad);
+        }
+    }
 
     
     
@@ -281,23 +298,71 @@ public class Menu extends javax.swing.JDialog {
     private void AñadirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirProductoActionPerformed
         // TODO add your handling code here:
         
-        // Obtener el producto seleccionado
+
+//        // Obtener el producto seleccionado
+//        Productos productoSeleccionado = ListaMuestra.getSelectedValue();
+//        // Obtener la cantidad ingresada
+//        String cantidadStr = CantidadCTxt.getText();
+//        
+//        try {
+//            int cantidad = Integer.parseInt(cantidadStr);
+//            
+//            if (productoSeleccionado != null && cantidad > 0) {
+//                for (int i = 0; i < cantidad; i++) {
+//                    modeloCarrito.addElement(productoSeleccionado);
+//                }
+//                JOptionPane.showMessageDialog(this, cantidad + " " + productoSeleccionado.getNomproducto() + "(s) añadido(s) al carrito.");
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Seleccione un producto y una cantidad válida.");
+//            }
+//        } catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido para la cantidad.");
+//        }
+
+
+
         Productos productoSeleccionado = ListaMuestra.getSelectedValue();
-        // Agregar el producto al carrito
-        if (productoSeleccionado != null) {
-            modeloCarrito.addElement(productoSeleccionado);
-        }    
+        String cantidadStr = CantidadCTxt.getText();
+
+        try {
+            int cantidad = Integer.parseInt(cantidadStr);
+
+            if (productoSeleccionado != null && cantidad > 0) {
+                carrito.put(productoSeleccionado, carrito.getOrDefault(productoSeleccionado, 0) + cantidad);
+                actualizarCarrito();
+                JOptionPane.showMessageDialog(this, cantidad + " " + productoSeleccionado.getNomproducto() + "(s) añadido(s) al carrito.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Seleccione un producto y una cantidad válida.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido para la cantidad.");
+        }
+
 
     }//GEN-LAST:event_AñadirProductoActionPerformed
 
     private void ActCarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActCarritoBtnActionPerformed
         // TODO add your handling code here:
-        ListaCarrito.setModel(modeloCarrito);
+       ListaCarrito.setModel(modeloCarrito);
+
+
+
+
+    modeloCarrito.clear();
+        for (Map.Entry<Productos, Integer> entry : carrito.entrySet()) {
+            Productos producto = entry.getKey();
+            int cantidad = entry.getValue();
+            modeloCarrito.addElement(producto.getNomproducto() + " x" + cantidad);
+        }
+
+
     }//GEN-LAST:event_ActCarritoBtnActionPerformed
 
     private void LimpiarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarBtnActionPerformed
         // TODO add your handling code here:
+        carrito.clear();
         modeloCarrito.clear();
+        //modeloCarrito.clear();
     }//GEN-LAST:event_LimpiarBtnActionPerformed
 
     private void ComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarActionPerformed
@@ -365,7 +430,7 @@ public class Menu extends javax.swing.JDialog {
     private javax.swing.JButton Comidas;
     private javax.swing.JButton Comprar;
     private javax.swing.JButton LimpiarBtn;
-    public javax.swing.JList<Productos> ListaCarrito;
+    public javax.swing.JList<String> ListaCarrito;
     public javax.swing.JList<Productos> ListaMuestra;
     private javax.swing.JButton Postres;
     private javax.swing.JLabel VariableCambiar;
