@@ -76,9 +76,6 @@ public class Productos implements Serializable {
         this.nomproducto = nomproducto;
         this.codtipoproducto = codtipoproducto;
     }
-    
-    
-    
 
     public Integer getIdproductos() {
         return idproductos;
@@ -176,6 +173,4 @@ public class Productos implements Serializable {
         return sb.toString();
     }
 
-    
-    
 }

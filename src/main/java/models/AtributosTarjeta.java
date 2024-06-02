@@ -6,10 +6,11 @@ import java.util.Objects;
 
 /**
  * Clase con los atributos de una tarjeta de crédito.
+ *
  * @author acebedo
  */
 public class AtributosTarjeta {
-    
+
     // Atributos.
     private int numeroTarjeta;
     private LocalDate fechaVencimiento;

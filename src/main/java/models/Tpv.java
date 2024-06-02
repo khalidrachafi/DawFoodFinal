@@ -122,5 +122,5 @@ public class Tpv implements Serializable {
     public String toString() {
         return "models.Tpv[ codtpv=" + codtpv + " ]";
     }
-    
+
 }

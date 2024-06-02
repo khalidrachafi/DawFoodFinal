@@ -151,23 +151,14 @@ public class Tickets implements Serializable {
 //        sb.append('}');
 //        return sb.toString();
 //    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("idticket=").append(idtickets);
         sb.append(", fechahoraticket=").append(fechahoraticket);
         sb.append(", Importe=").append(preciofinal);
-       // sb.append(", codtpv=").append(codtpv);
+        // sb.append(", codtpv=").append(codtpv);
         return sb.toString();
     }
-    
-    
-    
 
-    
-    
-    
-    
-    
 }

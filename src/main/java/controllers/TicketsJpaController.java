@@ -229,16 +229,13 @@ public class TicketsJpaController implements Serializable {
             em.close();
         }
     }
-    
 
-    
-    public List<Tickets> findAll(){
+    public List<Tickets> findAll() {
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Tickets.findAll");
 
         return q.getResultList();
     }
-    
-    
+
 }

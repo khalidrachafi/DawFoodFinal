@@ -228,11 +228,8 @@ public class ProductosJpaController implements Serializable {
             em.close();
         }
     }
-    
-    
-    
-        
-    public Productos findByIdproductos(int idproductos){
+
+    public Productos findByIdproductos(int idproductos) {
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Productos.findByIdproductos");
@@ -240,34 +237,26 @@ public class ProductosJpaController implements Serializable {
         q.setParameter("idproductos", idproductos);
         return (Productos) q.getSingleResult();
     }
-    
 
-    
-    
     public List<Productos> findByCategoria(String categoria) {
         EntityManager em = getEntityManager();
-        
-            // Create the query using the named query
-            Query q = em.createNamedQuery("Productos.findByCategoria");
-            // Set the parameter of the query
-            q.setParameter("categoria", categoria);
-            // Return the result list cast to the appropriate type
-            return q.getResultList();       
+
+        // Create the query using the named query
+        Query q = em.createNamedQuery("Productos.findByCategoria");
+        // Set the parameter of the query
+        q.setParameter("categoria", categoria);
+        // Return the result list cast to the appropriate type
+        return q.getResultList();
     }
-    
-    
-    
+
     public List<Productos> findAll() {
         EntityManager em = getEntityManager();
-        
-            // Create the query using the named query
-            Query q = em.createNamedQuery("Productos.findAll");
 
-            // Return the result list cast to the appropriate type
-            return q.getResultList();       
+        // Create the query using the named query
+        Query q = em.createNamedQuery("Productos.findAll");
+
+        // Return the result list cast to the appropriate type
+        return q.getResultList();
     }
-    
-    
-    
-    
+
 }

@@ -29,22 +29,20 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
     private static final DetalleticketJpaController dc = new DetalleticketJpaController(emf);
     private static final TpvJpaController vc = new TpvJpaController(emf);
     private static final TipoproductoJpaController tc = new TipoproductoJpaController(emf);
     private static final ProductosJpaController pc = new ProductosJpaController(emf);
     private static final TicketsJpaController kc = new TicketsJpaController(emf);
-    
+
     public static void main(String[] args) throws IllegalOrphanException, NonexistentEntityException {
 
         new VentanaPrincipal().setVisible(true);
-        
+
 //        Productos p2 = new Productos(0.10, 50, "gg", 50.00, "pizza", new Tipoproducto(1));
 //        pc.create(p2);
-       // Tipoproducto pizza = new Tipoproducto(1);
-       
+        // Tipoproducto pizza = new Tipoproducto(1);
 //        System.out.println(pc.findByCategoria("postre"));
 ////        pc.findByCategoria("comida");
 //    //    System.out.println(pc.findByCategoria("Postre"));
@@ -55,9 +53,5 @@ public class Main {
 //        }
 //        System.out.println(  dc.findByIdproductos(1));
     }
-    
 
-  
-        
-    
 }

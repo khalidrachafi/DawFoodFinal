@@ -61,8 +61,6 @@ public class Tipoproducto implements Serializable {
         this.codtipoproducto = codtipoproducto;
         this.categoria = categoria;
     }
-    
-    
 
     public String getNombretipoprodcucto() {
         return nombretipoprodcucto;
@@ -120,5 +118,5 @@ public class Tipoproducto implements Serializable {
     public String toString() {
         return "models.Tipoproducto[ codtipoproducto=" + codtipoproducto + " ]";
     }
-    
+
 }

@@ -199,9 +199,8 @@ public class TipoproductoJpaController implements Serializable {
             em.close();
         }
     }
-    
-    
-    public Tipoproducto findByCodtipoproducto(int codtipoproducto){
+
+    public Tipoproducto findByCodtipoproducto(int codtipoproducto) {
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Tipoproducto.findByCodtipoproducto");
@@ -209,30 +208,28 @@ public class TipoproductoJpaController implements Serializable {
         q.setParameter("codtipoproducto", codtipoproducto);
         return (Tipoproducto) q.getSingleResult();
     }
-    
-    
-    public Tipoproducto findByCategoria(String categoria){
+
+    public Tipoproducto findByCategoria(String categoria) {
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Tipoproducto.findByCategoria");
         // Se establece el parámetro de la consulta
         q.setParameter("categoria", categoria);
-        return (Tipoproducto)q.getSingleResult();
+        return (Tipoproducto) q.getSingleResult();
     }
-    
-    public Tipoproducto findByNombretipoprodcucto(String nombretipoprodcucto){
+
+    public Tipoproducto findByNombretipoprodcucto(String nombretipoprodcucto) {
         try {
             EntityManager em = getEntityManager();
-        // Se crea la query usando el nombre de la named query
-        Query q = em.createNamedQuery("Tipoproducto.findByNombretipoprodcucto");
-        // Se establece el parámetro de la consulta
-        q.setParameter("nombretipoprodcucto", nombretipoprodcucto);
-        return (Tipoproducto) q.getSingleResult();
+            // Se crea la query usando el nombre de la named query
+            Query q = em.createNamedQuery("Tipoproducto.findByNombretipoprodcucto");
+            // Se establece el parámetro de la consulta
+            q.setParameter("nombretipoprodcucto", nombretipoprodcucto);
+            return (Tipoproducto) q.getSingleResult();
         } catch (NullPointerException e) {
             System.out.println("No se ha encontrado ningun producto con ese nombre");
             return null;
-        }      
+        }
     }
-    
-    
+
 }

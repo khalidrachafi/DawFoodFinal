@@ -206,18 +206,16 @@ public class DetalleticketJpaController implements Serializable {
             em.close();
         }
     }
-    
-    
-    public Detalleticket findAll(){
+
+    public List<Detalleticket> findAll() {
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Detalleticket.findAll");
 
-        return (Detalleticket)q.getResultList();
+        return q.getResultList();
     }
-    
-    
-    public List<Detalleticket> findByIdproductos(int idproductos){
+
+    public List<Detalleticket> findByIdproductos(int idproductos) {
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Detalleticket.findByIdproductos");
@@ -225,9 +223,8 @@ public class DetalleticketJpaController implements Serializable {
         q.setParameter("idproductos", idproductos);
         return q.getResultList();
     }
-    
-    
-    public List<Detalleticket> findByIdtickets(int idtickets){
+
+    public List<Detalleticket> findByIdtickets(int idtickets) {
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Detalleticket.findByIdtickets");
@@ -235,6 +232,5 @@ public class DetalleticketJpaController implements Serializable {
         q.setParameter("idtickets", idtickets);
         return q.getResultList();
     }
-    
-    
+
 }

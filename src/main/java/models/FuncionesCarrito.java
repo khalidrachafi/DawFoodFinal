@@ -13,6 +13,7 @@ import javax.swing.JList;
  * @author krach
  */
 public class FuncionesCarrito {
+
     private JList<Productos> listaCarrito;
 
     public FuncionesCarrito(JList<Productos> listaCarrito) {
@@ -25,25 +26,24 @@ public class FuncionesCarrito {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
         EntityManager em = emf.createEntityManager();
-        
+
         em.getTransaction().begin();
-        
+
         Tickets ticket = new Tickets();
         ticket.setCodtpv(Metodos.EnconTpvPorId(1));
         ticket.setCodtransaccion(99);
         ticket.setFechahoraticket(new Date());
         double totalConIva = 0;
-        
+
         for (int i = 0; i < modeloCarrito.size(); i++) {
             Productos producto = modeloCarrito.getElementAt(i);
             totalConIva += obtenerPrecioConIva(producto);
         }
-        
+
         ticket.setPreciofinal(totalConIva);
-        
-        
+
         em.persist(ticket);
-        
+
         for (int i = 0; i < modeloCarrito.size(); i++) {
             Productos producto = modeloCarrito.getElementAt(i);
             Detalleticket detalle = new Detalleticket();
@@ -52,18 +52,17 @@ public class FuncionesCarrito {
             detalle.setTickets(ticket);
             em.persist(detalle);
         }
-        
+
         em.getTransaction().commit();
         em.close();
         emf.close();
-        
+
         // Limpiar el carrito después de la compra
         modeloCarrito.clear();
-        
+
         return ticket;
     }
-    
-    
+
     // Método para obtener el precio con IVA de un producto
     public double obtenerPrecioConIva(Productos producto) {
         return producto.getPrecio() * (1 + producto.getIva());

@@ -200,10 +200,8 @@ public class TpvJpaController implements Serializable {
             em.close();
         }
     }
-    
-    
-    
-    public Tpv findByIdproductos(int codtpv){
+
+    public Tpv findByIdproductos(int codtpv) {
         EntityManager em = getEntityManager();
         // Se crea la query usando el nombre de la named query
         Query q = em.createNamedQuery("Tpv.findByCodtpv");
@@ -211,5 +209,5 @@ public class TpvJpaController implements Serializable {
         q.setParameter("codtpv", codtpv);
         return (Tpv) q.getSingleResult();
     }
-    
+
 }

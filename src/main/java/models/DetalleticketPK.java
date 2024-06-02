@@ -75,5 +75,5 @@ public class DetalleticketPK implements Serializable {
     public String toString() {
         return "Detalleticket del ticket idproductos=" + idproductos + ", idtickets=" + idtickets + " ]";
     }
-    
+
 }
