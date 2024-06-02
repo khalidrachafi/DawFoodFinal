@@ -77,8 +77,7 @@ public class Menu extends javax.swing.JDialog {
         });
     }
     
-    
-    
+      
     
     private void actualizarCarrito() {
         modeloCarrito.clear();
@@ -87,9 +86,7 @@ public class Menu extends javax.swing.JDialog {
             int cantidad = entry.getValue();
             modeloCarrito.addElement(producto.getNomproducto() + " x" + cantidad);
         }
-    }
-
-    
+    }   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -296,30 +293,7 @@ public class Menu extends javax.swing.JDialog {
     }//GEN-LAST:event_ListaCarritoValueChanged
 
     private void AñadirProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirProductoActionPerformed
-        // TODO add your handling code here:
-        
-
-//        // Obtener el producto seleccionado
-//        Productos productoSeleccionado = ListaMuestra.getSelectedValue();
-//        // Obtener la cantidad ingresada
-//        String cantidadStr = CantidadCTxt.getText();
-//        
-//        try {
-//            int cantidad = Integer.parseInt(cantidadStr);
-//            
-//            if (productoSeleccionado != null && cantidad > 0) {
-//                for (int i = 0; i < cantidad; i++) {
-//                    modeloCarrito.addElement(productoSeleccionado);
-//                }
-//                JOptionPane.showMessageDialog(this, cantidad + " " + productoSeleccionado.getNomproducto() + "(s) añadido(s) al carrito.");
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Seleccione un producto y una cantidad válida.");
-//            }
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(this, "Por favor, ingrese un número válido para la cantidad.");
-//        }
-
-
+        // TODO add your handling code here:      
 
         Productos productoSeleccionado = ListaMuestra.getSelectedValue();
         String cantidadStr = CantidadCTxt.getText();
@@ -382,44 +356,7 @@ public class Menu extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                Menu dialog = new Menu(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActCarritoBtn;

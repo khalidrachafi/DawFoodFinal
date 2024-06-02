@@ -9,10 +9,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.AtributosTarjeta;
 import models.FuncionesCarrito;
 import models.Productos;
+import models.Tickets;
 import views.Menu;
 
 /**
@@ -39,7 +42,7 @@ public class PasarelaPago extends javax.swing.JDialog {
         listaDeTarjetas.add(new AtributosTarjeta(1422, LocalDate.of(2025, 3, 21), 567, 3000, "Carlos Herrera"));
         
         // Inicializar instancia de FuncionesCarrito
-        //funcionesCarrito = new FuncionesCarrito();
+        funcionesCarrito = new FuncionesCarrito(padre.getCarrito());
     }
     
     
@@ -182,6 +185,8 @@ public class PasarelaPago extends javax.swing.JDialog {
 
     private void ComprobarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarBtnActionPerformed
         // TODO add your handling code here:
+        
+        
          // Obtener los valores introducidos por el usuario
     String numTarjetaStr = NumTarjTxt.getText().trim();
     String mesStr = mesTxt.getText().trim();
@@ -238,14 +243,19 @@ public class PasarelaPago extends javax.swing.JDialog {
     // Si la tarjeta no se encontró, mostrar un mensaje de error
     if (!tarjetaEncontrada) {
         JOptionPane.showMessageDialog(this, "La tarjeta no existe o los datos no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        
+    }else{
+        try {
+                    // Llamar al método comprar de FuncionesCarrito
+                    funcionesCarrito.comprar();
+                    JOptionPane.showMessageDialog(this, "Compra realizada con éxito. Ticket: ");
+                    return;
+                } catch (Exception ex) {
+                    Logger.getLogger(PasarelaPago.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    } 
 
-    // Si no falla en ninguno, mostrar un mensaje de éxito
-    JOptionPane.showMessageDialog(null, "Compra realizada con éxito.","Pago",JOptionPane.INFORMATION_MESSAGE);
-    
-        // funcionesCarrito.comprar(); // Llama al método comprar
-         //   modeloCarrito.clear(); // Limpiar el modelo del carrito después de la compra    
+
     }//GEN-LAST:event_ComprobarBtnActionPerformed
 
     private void SalirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirBtnActionPerformed

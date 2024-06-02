@@ -73,7 +73,7 @@ public class DetalleticketPK implements Serializable {
 
     @Override
     public String toString() {
-        return "Detalleticket del ticket idproductos=" + idproductos + ", idtickets=" + idtickets + " ]";
+        return "DetalleticketPK [idproductos=" + idproductos + ", idtickets=" + idtickets + "]";
     }
 
 }

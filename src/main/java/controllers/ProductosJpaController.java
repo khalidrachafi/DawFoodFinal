@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.swing.JOptionPane;
 import models.Productos;
 
 /**
@@ -235,7 +236,7 @@ public class ProductosJpaController implements Serializable {
         Query q = em.createNamedQuery("Productos.findByIdproductos");
         // Se establece el parámetro de la consulta
         q.setParameter("idproductos", idproductos);
-        return (Productos) q.getSingleResult();
+        return (Productos) q.getSingleResult();        
     }
 
     public List<Productos> findByCategoria(String categoria) {

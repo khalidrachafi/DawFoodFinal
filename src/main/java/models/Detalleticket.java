@@ -46,6 +46,15 @@ public class Detalleticket implements Serializable {
         this.detalleticketPK = detalleticketPK;
     }
 
+    public Detalleticket(DetalleticketPK detalleticketPK, Integer cantidad, Productos productos, Tickets tickets) {
+        this.detalleticketPK = detalleticketPK;
+        this.cantidad = cantidad;
+        this.productos = productos;
+        this.tickets = tickets;
+    }
+
+    
+    
     public Detalleticket(int idproductos, int idtickets) {
         this.detalleticketPK = new DetalleticketPK(idproductos, idtickets);
     }

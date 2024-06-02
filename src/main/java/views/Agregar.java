@@ -197,7 +197,14 @@ public class Agregar extends javax.swing.JDialog {
 
     private void GuardarAñadirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarAñadirBtnActionPerformed
         // TODO add your handling code here:
-       llamarCrear();
+       
+        try {
+            llamarCrear();
+       JOptionPane.showMessageDialog(null, "El producto se ha añadido exitosamente");           
+             this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: El producto no se ha podido añadir");
+        }
     }//GEN-LAST:event_GuardarAñadirBtnActionPerformed
         
 
@@ -213,7 +220,7 @@ public class Agregar extends javax.swing.JDialog {
             return Integer.valueOf(texto);
         } catch (NumberFormatException e) {
             System.out.println("Error: No se puede convertir el string a int.");
-            return 0; // o cualquier valor por defecto que prefieras
+            return 0; 
         }
     }
 
@@ -223,7 +230,7 @@ public class Agregar extends javax.swing.JDialog {
             return Double.valueOf(texto);
         } catch (NumberFormatException e) {
             System.out.println("Error: No se puede convertir el string a double.");
-            return 0.0; // o cualquier valor por defecto que prefieras
+            return 0.0; 
         }
     }
     
@@ -233,44 +240,7 @@ public class Agregar extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Agregar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                Agregar dialog = new Agregar(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelarAñadirBtn;

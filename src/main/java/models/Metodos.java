@@ -36,7 +36,8 @@ public class Metodos {
     private static void crearTipo(Tipoproducto tipoproducto) {
         tc.create(tipoproducto);
     }
-
+    
+    //metodo para crear un producto pasandole parametros
     public static void ProductoCreado(String nombre, String descripcion, double iva, int stock, double precio, String categoria, String nombreTipo) {
 
         if (categoria.equalsIgnoreCase("Comida")) {
