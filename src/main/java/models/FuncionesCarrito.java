@@ -5,6 +5,8 @@ import controllers.ProductosJpaController;
 import controllers.TicketsJpaController;
 import controllers.TipoproductoJpaController;
 import controllers.TpvJpaController;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -46,7 +48,11 @@ public class FuncionesCarrito {
 
         kc.create(ticket);
         
-
+        
+        Collection<Detalleticket> detallesTicket = new ArrayList<>();
+        
+        ticket.setDetalleticketCollection(detallesTicket);
+        
         for (Map.Entry<Productos, Integer> entry : carrito.entrySet()) {
             Productos producto = entry.getKey();
             int cantidad = entry.getValue();
@@ -56,10 +62,19 @@ public class FuncionesCarrito {
 //            detalle.setDetalleticketPK(dk);
 //            detalle.setTickets(ticket);
 //            detalle.setProductos(producto);
-//            detalle.setCantidad(cantidad);        
+//            detalle.setCantidad(cantidad);           
+            
             dc.create(detalle);
-        }
-
+            
+            detallesTicket.add(detalle);
+            
+        } 
+        
+        
+        
+        
+        kc.edit(ticket);
+        
         // Limpiar el carrito después de la compra
         carrito.clear();
 
