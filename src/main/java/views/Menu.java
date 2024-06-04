@@ -25,31 +25,29 @@ public class Menu extends javax.swing.JDialog {
      * Creates new form Menu
      */
     private VentanaPrincipal padre;
-    //private DefaultListModel<Productos> modeloCarrito;
     private Map<Productos, Integer> carrito;
     private DefaultListModel<String> modeloCarrito;
-     
+
     public Menu(VentanaPrincipal ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
         initComponents();
         carrito = new HashMap<>();
         this.setTitle("Menu de Productos");
-         configurarRenderizadorListaCarrito(); 
-         
-         // Inicializar el modelo del carrito
+        configurarRenderizadorListaCarrito();
+
+        // Inicializar el modelo del carrito
         modeloCarrito = new DefaultListModel<>();
-        
+
         // Inicializar la lista con las comidas
-         actualizarLista("Comida");
-         
+        actualizarLista("Comida");
+
     }
 
     public Map<Productos, Integer> getCarrito() {
         return carrito;
     }
-    
-    
+
     private void actualizarLista(String categoria) {
         // Obtén la lista de productos de la categoría especificada
         List<Productos> productos = models.Metodos.RecibirListaProd(categoria);
@@ -76,9 +74,8 @@ public class Menu extends javax.swing.JDialog {
             }
         });
     }
-    
-      
-    
+
+    //actualizar el carrito para que muestre los productos
     private void actualizarCarrito() {
         modeloCarrito.clear();
         for (Map.Entry<Productos, Integer> entry : carrito.entrySet()) {
@@ -86,8 +83,8 @@ public class Menu extends javax.swing.JDialog {
             int cantidad = entry.getValue();
             modeloCarrito.addElement(producto.getNomproducto() + " x" + cantidad);
         }
-    }   
-    
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -273,7 +270,7 @@ public class Menu extends javax.swing.JDialog {
     private void ComidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComidasActionPerformed
         // TODO add your handling code here:
         VariableCambiar.setText("Comidas Disponibles:");
-         actualizarLista("Comida");
+        actualizarLista("Comida");
     }//GEN-LAST:event_ComidasActionPerformed
 
     private void BebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BebidasActionPerformed
@@ -317,12 +314,9 @@ public class Menu extends javax.swing.JDialog {
 
     private void ActCarritoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActCarritoBtnActionPerformed
         // TODO add your handling code here:
-       ListaCarrito.setModel(modeloCarrito);
+        ListaCarrito.setModel(modeloCarrito);
 
-
-
-
-    modeloCarrito.clear();
+        modeloCarrito.clear();
         for (Map.Entry<Productos, Integer> entry : carrito.entrySet()) {
             Productos producto = entry.getKey();
             int cantidad = entry.getValue();
@@ -343,20 +337,14 @@ public class Menu extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (modeloCarrito.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No se puede comprar, porque no hay nada en el carrito");
-        }else{
-         new PasarelaPago(this, true).setVisible(true);
+        } else {
+            new PasarelaPago(this, true).setVisible(true);
         }
     }//GEN-LAST:event_ComprarActionPerformed
-    
-
-        
-        
-        
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActCarritoBtn;
@@ -378,19 +366,18 @@ public class Menu extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void configurarRenderizadorListaCarrito() {
-    // Establecer el renderizador personalizado para ListaCarrito
-    ListaCarrito.setCellRenderer(new DefaultListCellRenderer() {
-        @Override
-        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            if (value instanceof Productos) {
-                Productos producto = (Productos) value;
-                setText(producto.getNomproducto() + ", " + producto.getPrecio());
+        // Establecer el renderizador personalizado para ListaCarrito
+        ListaCarrito.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof Productos) {
+                    Productos producto = (Productos) value;
+                    setText(producto.getNomproducto() + ", " + producto.getPrecio());
+                }
+                return renderer;
             }
-            return renderer;
-        }
-    });
-}
-    
-    
+        });
+    }
+
 }

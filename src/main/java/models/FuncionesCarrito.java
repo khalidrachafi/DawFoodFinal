@@ -12,13 +12,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Date;
 import java.util.Map;
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @autor krach
  */
 public class FuncionesCarrito {
+
     private Map<Productos, Integer> carrito;
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
     private static final DetalleticketJpaController dc = new DetalleticketJpaController(emf);
@@ -28,13 +29,12 @@ public class FuncionesCarrito {
         this.carrito = carrito;
     }
 
-    // Método para comprar los productos del carrito y generar el ticket
+    // Método para comprar los productos del carrito y generar el ticket y el detaleticket
     public void comprar() throws Exception {
-        
-        
+
         Tickets ticket = new Tickets();
-        ticket.setCodtpv(Metodos.EnconTpvPorId(1));
-        ticket.setCodtransaccion(99);
+        ticket.setCodtpv(Metodos.EnconTpvPorId(1)); //ponemos por defecto el 1
+        ticket.setCodtransaccion(99); //ponemos por defecto 99
         ticket.setFechahoraticket(new Date());
         double totalConIva = 0;
 
@@ -45,36 +45,35 @@ public class FuncionesCarrito {
         }
 
         ticket.setPreciofinal(totalConIva);
+        
+        
 
         kc.create(ticket);
-        
-        
+
         Collection<Detalleticket> detallesTicket = new ArrayList<>();
-        
+
         ticket.setDetalleticketCollection(detallesTicket);
-        
+
         for (Map.Entry<Productos, Integer> entry : carrito.entrySet()) {
             Productos producto = entry.getKey();
             int cantidad = entry.getValue();
-             DetalleticketPK dk = new DetalleticketPK(producto.getIdproductos(),
-            ticket.getIdtickets());
+            DetalleticketPK dk = new DetalleticketPK(producto.getIdproductos(),
+                    ticket.getIdtickets());
             Detalleticket detalle = new Detalleticket(dk, cantidad, producto, ticket);
-//            detalle.setDetalleticketPK(dk);
-//            detalle.setTickets(ticket);
-//            detalle.setProductos(producto);
-//            detalle.setCantidad(cantidad);           
             
             dc.create(detalle);
-            
+
             detallesTicket.add(detalle);
             
-        } 
+//            if ((producto.getStock() - cantidad) < 0) {
+//                JOptionPane.showMessageDialog(null, "Error: no hay suficiente stock");
+//            }
+        }
         
         
-        
-        
+
         kc.edit(ticket);
-        
+
         // Limpiar el carrito después de la compra
         carrito.clear();
 

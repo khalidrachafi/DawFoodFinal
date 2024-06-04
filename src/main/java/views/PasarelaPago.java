@@ -24,12 +24,11 @@ import views.Menu;
  */
 public class PasarelaPago extends javax.swing.JDialog {
 
-
     private Menu padre;
     private static List<Productos> carrito = new ArrayList<>();
     private static List<AtributosTarjeta> listaDeTarjetas = new ArrayList<>();
-    private FuncionesCarrito funcionesCarrito; // Instancia de FuncionesCarrito
-     
+    private FuncionesCarrito funcionesCarrito; 
+
     public PasarelaPago(Menu ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
@@ -40,16 +39,10 @@ public class PasarelaPago extends javax.swing.JDialog {
         listaDeTarjetas.add(new AtributosTarjeta(1122, LocalDate.of(2025, 8, 23), 789, 200, "Pedro Gomez"));
         listaDeTarjetas.add(new AtributosTarjeta(3322, LocalDate.of(2025, 5, 22), 234, 1500, "Ana Martinez"));
         listaDeTarjetas.add(new AtributosTarjeta(1422, LocalDate.of(2025, 3, 21), 567, 3000, "Carlos Herrera"));
+
         
-        // Inicializar instancia de FuncionesCarrito
         funcionesCarrito = new FuncionesCarrito(padre.getCarrito());
     }
-    
-    
-
-   
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -185,75 +178,74 @@ public class PasarelaPago extends javax.swing.JDialog {
 
     private void ComprobarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarBtnActionPerformed
         // TODO add your handling code here:
-        
-        
-         // Obtener los valores introducidos por el usuario
-    String numTarjetaStr = NumTarjTxt.getText().trim();
-    String mesStr = mesTxt.getText().trim();
-    String anoStr = AñoTxt.getText().trim();
-    String cvvStr = CvvTxt.getText().trim();
 
-    // Verificar si algún campo está vacío
-    if (numTarjetaStr.isEmpty() || mesStr.isEmpty() || anoStr.isEmpty() || cvvStr.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        // Obtener los valores introducidos
+        String numTarjetaStr = NumTarjTxt.getText().trim();
+        String mesStr = mesTxt.getText().trim();
+        String anoStr = AñoTxt.getText().trim();
+        String cvvStr = CvvTxt.getText().trim();
 
-    // Convertir los valores de mes y año a enteros
-    int mes;
-    int ano;
-    try {
-        mes = Integer.parseInt(mesStr);
-        ano = Integer.parseInt(anoStr);
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "El mes y el año deben ser números enteros.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Verificar si la fecha de caducidad es válida
-    if (mes < 1 || mes > 12 || ano < LocalDate.now().getYear() || (ano == LocalDate.now().getYear() && mes < LocalDate.now().getMonthValue())) {
-        JOptionPane.showMessageDialog(this, "La fecha de caducidad no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Verificar si la longitud del número de tarjeta es válida
-    if (numTarjetaStr.length() != 4) {
-        JOptionPane.showMessageDialog(this, "El número de tarjeta debe tener 4 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Verificar si el CVV es válido
-    if (cvvStr.length() != 3) {
-        JOptionPane.showMessageDialog(this, "El CVV debe tener 3 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Verificar si la tarjeta existe en la lista de tarjetas y coincide con los datos introducidos
-    boolean tarjetaEncontrada = false;
-    for (AtributosTarjeta tarjeta : listaDeTarjetas) {
-        if (tarjeta.getNumeroTarjeta() == Integer.parseInt(numTarjetaStr) &&
-            tarjeta.getFechaVencimiento().getMonthValue() == mes &&
-            tarjeta.getFechaVencimiento().getYear() == ano &&
-            tarjeta.getCvv() == Integer.parseInt(cvvStr)) {
-            tarjetaEncontrada = true;
-            break;
+        // Verificar si algún campo está vacío
+        if (numTarjetaStr.isEmpty() || mesStr.isEmpty() || anoStr.isEmpty() || cvvStr.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    }
 
-    // Si la tarjeta no se encontró, mostrar un mensaje de error
-    if (!tarjetaEncontrada) {
-        JOptionPane.showMessageDialog(this, "La tarjeta no existe o los datos no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
-        
-    }else{
+        // Convertir los valores de mes y año a int
+        int mes;
+        int ano;
         try {
-                    // Llamar al método comprar de FuncionesCarrito
-                    funcionesCarrito.comprar();
-                    JOptionPane.showMessageDialog(this, "Compra realizada con éxito. Ticket: ");
-                    return;
-                } catch (Exception ex) {
-                    Logger.getLogger(PasarelaPago.class.getName()).log(Level.SEVERE, null, ex);
-                }
-    } 
+            mes = Integer.parseInt(mesStr);
+            ano = Integer.parseInt(anoStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El mes y el año deben ser números enteros.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Verificar si la fecha de caducidad es válida
+        if (mes < 1 || mes > 12 || ano < LocalDate.now().getYear() || (ano == LocalDate.now().getYear() && mes < LocalDate.now().getMonthValue())) {
+            JOptionPane.showMessageDialog(this, "La fecha de caducidad no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Verificar si la longitud del número de tarjeta es válida
+        if (numTarjetaStr.length() != 4) {
+            JOptionPane.showMessageDialog(this, "El número de tarjeta debe tener 4 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Verificar si el CVV es válido
+        if (cvvStr.length() != 3) {
+            JOptionPane.showMessageDialog(this, "El CVV debe tener 3 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Verificar si la tarjeta existe en la lista de tarjetas y coincide con los datos introducidos
+        boolean tarjetaEncontrada = false;
+        for (AtributosTarjeta tarjeta : listaDeTarjetas) {
+            if (tarjeta.getNumeroTarjeta() == Integer.parseInt(numTarjetaStr)
+                    && tarjeta.getFechaVencimiento().getMonthValue() == mes
+                    && tarjeta.getFechaVencimiento().getYear() == ano
+                    && tarjeta.getCvv() == Integer.parseInt(cvvStr)) {
+                tarjetaEncontrada = true;
+                break;
+            }
+        }
+
+        // Si la tarjeta no se encuentra, mostrar un mensaje de error
+        if (!tarjetaEncontrada) {
+            JOptionPane.showMessageDialog(this, "La tarjeta no existe o los datos no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            try {
+                // Llamar al método comprar de FuncionesCarrito
+                funcionesCarrito.comprar();
+                JOptionPane.showMessageDialog(this, "Compra realizada con éxito. Ticket: ");
+                return;
+            } catch (Exception ex) {
+                Logger.getLogger(PasarelaPago.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
 
     }//GEN-LAST:event_ComprobarBtnActionPerformed
@@ -271,44 +263,6 @@ public class PasarelaPago extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(PasarelaPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(PasarelaPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(PasarelaPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(PasarelaPago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                PasarelaPago dialog = new PasarelaPago(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AñoTxt;
