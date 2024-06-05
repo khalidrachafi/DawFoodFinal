@@ -55,45 +55,8 @@ CREATE TABLE detalleticket
 );
 
 
-DROP TRIGGER if exists controlStock;
-delimiter $$
-create trigger controlStock
-	before insert on Productos
-for each row
-begin
-	declare stockActual int;
 
 
-end $$
-delimiter ;
 
-
-DROP trigger if exists controlStock;
-DELIMITER $$
-Create trigger controlStock
-before insert on detalleticket
-for each row
-begin
-DECLARE stockActual int;
-    select productos.stock into stockActual
-    from productos
-    where productos.idproductos = productos.new.idproductos;
-    if detalleticket.cantidad > stockActual then
-signal sqlstate '70000' set message_text='Stock insuficiente ';
-    end if;
-end $$
-DELIMITER ;
-
-DROP trigger if exists incrementoStock;
-DELIMITER $$
-Create trigger incrementoStock
-after insert on detalleticket
-for each row
-begin
-update productos
-    set productos.stock = productos.stock - new.cantidad
-    where idProductos = new.idproductos;
-end $$
-DELIMITER ;
 
 

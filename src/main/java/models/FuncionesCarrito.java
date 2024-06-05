@@ -65,9 +65,7 @@ public class FuncionesCarrito {
 
             detallesTicket.add(detalle);
             
-//            if ((producto.getStock() - cantidad) < 0) {
-//                JOptionPane.showMessageDialog(null, "Error: no hay suficiente stock");
-//            }
+
         }
         
         

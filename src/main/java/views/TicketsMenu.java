@@ -19,9 +19,8 @@ public class TicketsMenu extends javax.swing.JDialog {
     /**
      * Creates new form Tickets
      */
-
     private VentanaPrincipal padre;
-     
+
     public TicketsMenu(VentanaPrincipal ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
@@ -29,36 +28,33 @@ public class TicketsMenu extends javax.swing.JDialog {
         this.setTitle("Menu de consulta de tickets");
         cargarTickets();
     }
-    
-    
-      private void cargarTickets() {
-        List<Tickets> tickets = models.Metodos.RecibirListaTick(); 
+
+    private void cargarTickets() {
+        List<Tickets> tickets = models.Metodos.RecibirListaTick();
         DefaultListModel<Tickets> model = new DefaultListModel<>();
         for (Tickets ticket : tickets) {
             model.addElement(ticket);
         }
         ListaTickets.setModel(model);
     }
-    
-      
-      private void mostrarDetalles(List<Detalleticket> detalles, Tickets ticket) {
 
-          String fecha = ticket.getFechahoraticket().toString();
-          double precioTotal = ticket.getPreciofinal();
-          String precioFinal = String.valueOf(precioTotal);
-          
-          String cabeceraDetalle = "FechaHora= " + fecha +"\n\n";
-          String pieDetalle = "PrecioTotal= " + precioFinal;
-          
-         // bucle para mostrar el to string de cada producto en un joption 
+    private void mostrarDetalles(List<Detalleticket> detalles, Tickets ticket) {
+
+        String fecha = ticket.getFechahoraticket().toString();
+        double precioTotal = ticket.getPreciofinal();
+        String precioFinal = String.valueOf(precioTotal);
+
+        String cabeceraDetalle = "FechaHora= " + fecha + "\n\n";
+        String pieDetalle = "PrecioTotal= " + precioFinal;
+
+        // bucle para mostrar el to string de cada producto en un joption 
         String detallesStr = "";
         for (Detalleticket detalle : detalles) {
             detallesStr += detalle.toString() + "\n";
         }
         JOptionPane.showMessageDialog(this, cabeceraDetalle + detallesStr + "\n" + pieDetalle, "Detalles del Ticket", JOptionPane.INFORMATION_MESSAGE);
     }
-      
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,10 +146,10 @@ public class TicketsMenu extends javax.swing.JDialog {
         // TODO add your handling code here:
         int selectedIndex = ListaTickets.getSelectedIndex();
         if (selectedIndex != -1) {
-            Tickets selectedTicket =  models.Metodos.RecibirListaTick().get(selectedIndex);  
+            Tickets selectedTicket = models.Metodos.RecibirListaTick().get(selectedIndex);
             int ticketId = selectedTicket.getIdtickets();
             List<Detalleticket> detalles = models.Metodos.RecibirListaDetalle(ticketId);
-            mostrarDetalles(detalles,selectedTicket);
+            mostrarDetalles(detalles, selectedTicket);
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, selecciona un ticket primero.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -162,7 +158,6 @@ public class TicketsMenu extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarBtn;

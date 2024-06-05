@@ -31,7 +31,7 @@ public class Borrar extends javax.swing.JDialog {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
     private static final DetalleticketJpaController dc = new DetalleticketJpaController(emf);
     private GestionarMenu padre;
-     
+
     public Borrar(GestionarMenu ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
@@ -39,9 +39,7 @@ public class Borrar extends javax.swing.JDialog {
         MostrarLista();
         this.setTitle("Borrar Producto");
     }
-    
-    
-    
+
     private void MostrarLista() {
         // Obtén toda la lista de productos
         List<Productos> productos = models.Metodos.TodaListaProductos();
@@ -60,21 +58,13 @@ public class Borrar extends javax.swing.JDialog {
                 Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof Productos) {
                     Productos producto = (Productos) value;
-                    setText(producto.getIdproductos()+ ", " + producto.getNomproducto());
+                    setText(producto.getIdproductos() + ", " + producto.getNomproducto());
                 }
                 return renderer;
             }
         });
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -181,25 +171,24 @@ public class Borrar extends javax.swing.JDialog {
     }//GEN-LAST:event_CancelarBttnActionPerformed
 
     private void BorrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarBtnActionPerformed
-        
-            // TODO add your handling code here:
-            //si existe un producto en un ticket no lo hace y muestra un mensaje de error
-            if (dc.findByIdproductos(stringAInt(IdBorrarTxt.getText())).isEmpty() || dc.findByIdproductos(stringAInt(IdBorrarTxt.getText())) == null) {
-              try {
-                  models.Metodos.EliminarProd(stringAInt(IdBorrarTxt.getText()));
-                  JOptionPane.showMessageDialog(null, "El producto se ha borrado exitosamente");           
-                        this.dispose();
-                    } catch (IllegalOrphanException ex) {
-                   Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (NonexistentEntityException ex) {
+
+        // TODO add your handling code here:
+        //si existe un producto en un ticket no lo hace y muestra un mensaje de error
+        if (dc.findByIdproductos(stringAInt(IdBorrarTxt.getText())).isEmpty() || dc.findByIdproductos(stringAInt(IdBorrarTxt.getText())) == null) {
+            try {
+                models.Metodos.EliminarProd(stringAInt(IdBorrarTxt.getText()));
+                JOptionPane.showMessageDialog(null, "El producto se ha borrado exitosamente");
+                this.dispose();
+            } catch (IllegalOrphanException ex) {
+                Logger.getLogger(Borrar.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NonexistentEntityException ex) {
                 JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
-                    }             
-        }else{
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
         }
 
-            
-        
+
     }//GEN-LAST:event_BorrarBtnActionPerformed
 
     private static int stringAInt(String texto) {
@@ -207,15 +196,13 @@ public class Borrar extends javax.swing.JDialog {
             return Integer.valueOf(texto);
         } catch (NumberFormatException e) {
             System.out.println("Error: No se puede convertir el string a int.");
-            return 0; 
+            return 0;
         }
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BorrarBtn;

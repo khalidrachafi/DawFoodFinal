@@ -29,10 +29,10 @@ public class Editar extends javax.swing.JDialog {
     /**
      * Creates new form Editar
      */
-     private GestionarMenu padre;
-     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
-     private static final DetalleticketJpaController dc = new DetalleticketJpaController(emf);
-     
+    private GestionarMenu padre;
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("dawfoodbd");
+    private static final DetalleticketJpaController dc = new DetalleticketJpaController(emf);
+
     public Editar(GestionarMenu ventana, boolean modal) {
         super(ventana, modal);
         padre = ventana;
@@ -40,8 +40,7 @@ public class Editar extends javax.swing.JDialog {
         MostrarLista();
         this.setTitle("Editar Producto");
     }
-    
-    
+
     private void MostrarLista() {
         // Obtén toda la lista de productos
         List<Productos> productos = models.Metodos.TodaListaProductos();
@@ -60,34 +59,31 @@ public class Editar extends javax.swing.JDialog {
                 Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof Productos) {
                     Productos producto = (Productos) value;
-                    setText(producto.getIdproductos()+ ", " + producto.getNomproducto());
+                    setText(producto.getIdproductos() + ", " + producto.getNomproducto());
                 }
                 return renderer;
             }
         });
     }
-    
-    private void editarProducto(int id, String nuevoNombre, String nuevaDescripcion, double nuevoIva,double nuevoPrecio) throws NonexistentEntityException, Exception {
-    // Obtener el Producto existente por su ID
-    Productos producto = models.Metodos.EnconProductosPorId(id);
-    
-    // Verificar si el Producto existe
-    if (producto == null) {
-        throw new NonexistentEntityException("El Producto con ID " + id + " no existe.");
-    }
-    
-    // Modificar los valores del Producto con los nuevos valores
-    producto.setNomproducto(nuevoNombre);
-    producto.setDescripcion(nuevaDescripcion);
-    producto.setPrecio(nuevoPrecio);
-    producto.setIva(nuevoIva);
-    
-    // Llamar al método edit existente para guardar los cambios en la base de datos
-    models.Metodos.EditarProd(producto);
-    }
 
-    
+    private void editarProducto(int id, String nuevoNombre, String nuevaDescripcion, double nuevoIva, double nuevoPrecio) throws NonexistentEntityException, Exception {
+        // Obtener el Producto existente por su ID
+        Productos producto = models.Metodos.EnconProductosPorId(id);
 
+        // Verificar si el Producto existe
+        if (producto == null) {
+            throw new NonexistentEntityException("El Producto con ID " + id + " no existe.");
+        }
+
+        // Modificar los valores del Producto con los nuevos valores
+        producto.setNomproducto(nuevoNombre);
+        producto.setDescripcion(nuevaDescripcion);
+        producto.setPrecio(nuevoPrecio);
+        producto.setIva(nuevoIva);
+
+        // Llamar al método edit existente para guardar los cambios en la base de datos
+        models.Metodos.EditarProd(producto);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -256,26 +252,24 @@ public class Editar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       // TODO add your handling code here:   
-        if (dc.findByIdproductos(stringAInt(idtxt.getText())).isEmpty() || dc.findByIdproductos(stringAInt(idtxt.getText())) == null) {       
-           try {       
-             //si existe un producto en un ticket no lo hace y muestra un mensaje de error
-             editarProducto(stringAInt(idtxt.getText()), nombretxt.getText(),descTxt.getText() , stringADouble(ivaTxt.getText()),stringADouble(precioTxt.getText()));
-             JOptionPane.showMessageDialog(null, "El producto se ha modificado exitosamente");           
-             this.dispose();
-                }catch (NoResultException ex) {
-                    JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
-                } catch (Exception ex) {
+        // TODO add your handling code here:   
+        if (dc.findByIdproductos(stringAInt(idtxt.getText())).isEmpty() || dc.findByIdproductos(stringAInt(idtxt.getText())) == null) {
+            try {
+                //si existe un producto en un ticket no lo hace y muestra un mensaje de error
+                editarProducto(stringAInt(idtxt.getText()), nombretxt.getText(), descTxt.getText(), stringADouble(ivaTxt.getText()), stringADouble(precioTxt.getText()));
+                JOptionPane.showMessageDialog(null, "El producto se ha modificado exitosamente");
+                this.dispose();
+            } catch (NoResultException ex) {
+                JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
+            } catch (Exception ex) {
                 Logger.getLogger(Editar.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Error: no se puede modificar un producto existente en un ticket");
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -283,13 +277,12 @@ public class Editar extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    
     private static int stringAInt(String texto) {
         try {
             return Integer.valueOf(texto);
         } catch (NumberFormatException e) {
             System.out.println("Error: No se puede convertir el string a int.");
-            return 0; 
+            return 0;
         }
     }
 
@@ -299,17 +292,13 @@ public class Editar extends javax.swing.JDialog {
             return Double.valueOf(texto);
         } catch (NumberFormatException e) {
             System.out.println("Error: No se puede convertir el string a double.");
-            return 0.0; 
+            return 0.0;
         }
     }
-    
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<Productos> ListaParaEditar;

@@ -330,7 +330,7 @@ public class Menu extends javax.swing.JDialog {
         // TODO add your handling code here:
         carrito.clear();
         modeloCarrito.clear();
-        //modeloCarrito.clear();
+
     }//GEN-LAST:event_LimpiarBtnActionPerformed
 
     private void ComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprarActionPerformed
